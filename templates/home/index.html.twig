@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h2 class="text-center mb-4">Les différents lots à gagner</h2>
+    <div class="prize-grid">
+        <div class="row">
+            {% for prize in prizes %}
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset('images/' ~ prize.name ~ '.jpg') }}" class="card-img-top" alt="{{ prize.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ prize.name }}</h5>
+                            <p class="card-text">Description produit</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ path('app_lottery') }}" class="btn btn-primary btn-lg">Jouer</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil{% endblock %}
+
+{% block body %}
+    <div class="profile-info">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar" class="profile-avatar mb-3">
+            </div>
+            <div class="col-md-9">
+                <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
+                <p>{{ app.user.birthdate }}</p>
+                <p>{% if app.user.address != '' %}{{ app.user.address }}{% endif %}</p>
+                <p>Nombre de gains : {{ app.user.codes|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mb-3">Mes gains</h3>
+    <div class="prize-grid">
+        {% for code in app.user.codes|slice(0, 6) %}
+            <div class="prize-item">
+                <img src="{{ asset('images/' ~ code.prize|lower|replace({' ': '-'}) ~ '.png') }}" alt="{{ code.prize }}">
+                <h5>{{ code.prize }}</h5>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

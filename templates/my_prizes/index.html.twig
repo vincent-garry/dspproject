@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes gains{% endblock %}
+
+{% block body %}
+    <h1>Mes gains</h1>
+    {% if prizes is empty %}
+        <p>Vous n'avez pas encore de gains.</p>
+    {% else %}
+        <div class="prize-grid">
+            {% for prize in prizes %}
+                <div class="prize-item">
+                    <h3>{{ prize.prize }}</h3>
+                    <p>Code: {{ prize.code }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
