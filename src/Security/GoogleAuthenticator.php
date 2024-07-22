@@ -71,7 +71,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
                 $googleClient = new GoogleClient();
                 $googleClient->setAccessToken($accessToken->getToken());
 
-                $guzzleClient = new \GuzzleHttp\Client(['verify' => '~/cacert.pem']);
+                $guzzleClient = new \GuzzleHttp\Client(['verify' => '/usr/local/etc/cacert.pem']);
                 $googleClient->setHttpClient($guzzleClient);
 
                 $peopleService = new PeopleService($googleClient);
