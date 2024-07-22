@@ -22,9 +22,6 @@
 
     <h2>Age Statistics</h2>
     <ul>
-        {% for ageRange, count in stats.ageStats %}
-            <li>{{ ageRange }}: {{ count }}</li>
-        {% endfor %}
     </ul>
 
     <a href="{{ path('admin_email_data') }}">View Email Data</a>
