@@ -14,4 +14,4 @@ knpu_oauth2_client:
             client_secret: '%env(FACEBOOK_SECRET)%'
             redirect_route: connect_facebook_check
             redirect_params: { }
-            graph_api_version: v12.0
+            graph_api_version: v20.0
