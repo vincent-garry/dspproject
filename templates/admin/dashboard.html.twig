@@ -4,25 +4,25 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block body %}
-    <h1>Admin Dashboard</h1>
+    <h1>Dashboard Administrateur</h1>
 
-    <h2>Statistics</h2>
+    <h2>Statistiques</h2>
     <ul>
-        <li>Total Tickets: {{ stats.totalTickets }}</li>
-        <li>Used Tickets: {{ stats.usedTickets }}</li>
-        <li>Total Prizes Won: {{ stats.totalPrizes }}</li>
+        <li>Nombre total de ticket: {{ stats.totalTickets }}</li>
+        <li>Tickets utilisés: {{ stats.usedTickets }}</li>
+        <li>Nombre total de prix gagnés: {{ stats.totalPrizes }}</li>
     </ul>
 
-    <h2>Gender Statistics</h2>
+    <h2>Genre statistiques</h2>
     <ul>
         {% for gender, count in stats.genderStats %}
             <li>{{ gender }}: {{ count }}</li>
         {% endfor %}
     </ul>
 
-    <h2>Age Statistics</h2>
+    <h2>Age statistiques</h2>
     <ul>
     </ul>
 
-    <a href="{{ path('admin_email_data') }}">View Email Data</a>
+    <a href="{{ path('admin_email_data') }}">Voir les données d'emailing</a>
 {% endblock %}
