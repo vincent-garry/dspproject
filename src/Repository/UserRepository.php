@@ -33,6 +33,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    public function getGenderStats(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.gender, COUNT(u) as count')
+            ->groupBy('u.gender')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

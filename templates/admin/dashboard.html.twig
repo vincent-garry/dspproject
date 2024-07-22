@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+    <h1>Admin Dashboard</h1>
+
+    <h2>Statistics</h2>
+    <ul>
+        <li>Total Tickets: {{ stats.totalTickets }}</li>
+        <li>Used Tickets: {{ stats.usedTickets }}</li>
+        <li>Total Prizes Won: {{ stats.totalPrizes }}</li>
+    </ul>
+
+    <h2>Gender Statistics</h2>
+    <ul>
+        {% for gender, count in stats.genderStats %}
+            <li>{{ gender }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Age Statistics</h2>
+    <ul>
+        {% for ageRange, count in stats.ageStats %}
+            <li>{{ ageRange }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('admin_email_data') }}">View Email Data</a>
+{% endblock %}
