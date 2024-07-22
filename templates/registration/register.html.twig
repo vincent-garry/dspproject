@@ -12,8 +12,10 @@
     {{ form_row(registrationForm.gender) }}
     {{ form_row(registrationForm.birthdate) }}
     {{ form_row(registrationForm.address) }}
+    <hr>
     <button type="submit" class="btn btn-primary">S'inscrire</button>
     {{ form_end(registrationForm) }}
+    <hr>
     <div class="social-login">
         <a href="{{ path('connect_google_start') }}" class="btn btn-primary">S'inscrire avec Google</a>
         <a href="{{ path('connect_facebook_start') }}" class="btn btn-primary">S'inscrire avec Facebook</a>
