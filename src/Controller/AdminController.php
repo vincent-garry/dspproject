@@ -16,7 +16,6 @@ class AdminController extends AbstractController
     public function dashboard(CodeRepository $ticketRepo, UserRepository $userRepo): Response
     {
         $genderStats = $userRepo->getGenderStats();
-        $ageStats = $userRepo->getAgeStats();
 
         $stats = [
             'totalTickets' => $ticketRepo->count([]),
