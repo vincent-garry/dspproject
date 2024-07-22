@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Code;
 use App\Repository\CodeRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'admin_dashboard')]
-    public function dashboard(TicketRepository $ticketRepo, UserRepository $userRepo): Response
+    public function dashboard(CodeRepository $ticketRepo, UserRepository $userRepo): Response
     {
         $genderStats = $userRepo->getGenderStats();
         $ageStats = $userRepo->getAgeStats();
