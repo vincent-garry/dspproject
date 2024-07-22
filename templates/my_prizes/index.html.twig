@@ -11,9 +11,9 @@
             {% for prize in prizes %}
                 <div class="col-md-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('images/' ~ prize.name ~ '.jpg') }}" class="card-img-top" alt="{{ prize.name }}">
+                        <img src="{{ asset('images/' ~ prize.prize ~ '.jpg') }}" class="card-img-top" alt="{{ prize.prize }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ prize.name }}</h5>
+                            <h5 class="card-title">{{ prize.prize }}</h5>
                             <p class="card-text">prize.code</p>
                         </div>
                     </div>
