@@ -28,11 +28,11 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'first_options'  => [
                     'label' => 'Mot de passe',
-                    'attr' => ['class' => 'form-password', 'placeholder' => 'Mot de passe']
+                    'attr' => ['class' => 'form-control', 'placeholder' => 'Mot de passe']
                 ],
                 'second_options' => [
                     'label' => 'Confirmation de mot de passe',
-                    'attr' => ['class' => 'form-password', 'placeholder' => 'Confirmation de mot de passe']
+                    'attr' => ['class' => 'form-control', 'placeholder' => 'Confirmation de mot de passe']
                 ],
             ])
             ->add('firstName', TextType::class, [
