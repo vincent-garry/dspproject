@@ -9,9 +9,14 @@
     {% else %}
         <div class="prize-grid">
             {% for prize in prizes %}
-                <div class="prize-item">
-                    <h3>{{ prize.prize }}</h3>
-                    <p>Code: {{ prize.code }}</p>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset('images/' ~ prize.name ~ '.jpg') }}" class="card-img-top" alt="{{ prize.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ prize.name }}</h5>
+                            <p class="card-text">prize.code</p>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>
