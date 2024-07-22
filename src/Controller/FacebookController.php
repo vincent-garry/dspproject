@@ -31,4 +31,10 @@ class FacebookController extends AbstractController
     {
         return $this->render('security/confidentialite.html.twig');
     }
+
+    #[Route('/politique-suppression', name: 'app_suppression')]
+    public function droitSuppression()
+    {
+        return $this->render('security/suppresion.html.twig');
+    }
 }
