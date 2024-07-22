@@ -25,4 +25,10 @@ class FacebookController extends AbstractController
         // Cette méthode ne sera jamais exécutée,
         // car le flux sera intercepté par le FacebookAuthenticator
     }
+
+    #[Route('/politique-confidentialite', name: 'app_confidentialite')]
+    public function confidentialite()
+    {
+        return $this->render('security/confidentialite.html.twig');
+    }
 }
