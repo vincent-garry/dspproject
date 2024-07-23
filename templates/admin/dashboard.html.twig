@@ -108,16 +108,34 @@
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {
+                            // Taille des labels sur l'axe X
+                            font: {
+                                size: 14 // Ajustez la taille de la police selon vos besoins
+                            }
+                        }
                     },
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {
+                            // Taille des labels sur l'axe Y
+                            font: {
+                                size: 14 // Ajustez la taille de la police selon vos besoins
+                            }
+                        }
                     }
                 },
                 plugins: {
                     legend: {
                         display: true,
                         position: 'top',
+                        labels: {
+                            // Taille des labels dans la légende
+                            font: {
+                                size: 16 // Ajustez la taille de la police selon vos besoins
+                            }
+                        }
                     },
                     tooltip: {
                         callbacks: {
