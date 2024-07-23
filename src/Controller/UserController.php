@@ -30,6 +30,10 @@ class UserController extends AbstractController
         foreach ($users as $user) {
             $userData[] = [
                 'email' => $user->getEmail(),
+                'prénom' => $user->getFirstName(),
+                'nom' => $user->getLastName(),
+                'date de naissance' => $user->getBirthdate(),
+                'adresse' => $user->getAddress(),
                 'codes' => array_map(function ($code) {
                     return [
                         'code' => $code->getCode(),

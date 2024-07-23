@@ -24,6 +24,24 @@ class CodeController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    #[Route('/api/codes', name: 'get_all_codes', methods: ['GET'])]
+    public function getAllCodes(): JsonResponse
+    {
+        // Récupérer tous les codes
+        $codes = $this->codeRepository->findAll();
+
+        // Préparer les données pour la réponse
+        $codeData = array_map(function (Code $code) {
+            return [
+                'code' => $code->getCode(),
+                'prize' => $code->getPrize(),
+                'isUsed' => $code->isUsed(),
+            ];
+        }, $codes);
+
+        return new JsonResponse($codeData);
+    }
+
     #[Route('/api/codes/{code}', name: 'get_code', methods: ['GET'])]
     public function getCode(string $code): JsonResponse
     {
