@@ -50,7 +50,7 @@ class AssociateCodeToUserController extends AbstractController
             throw new NotFoundHttpException('User not found');
         }
 
-        $codeEntity->setUsers($user);
+        $codeEntity->setUser($user);
         $codeEntity->setIsUsed(true);
         $entityManager->flush();
 
@@ -59,7 +59,7 @@ class AssociateCodeToUserController extends AbstractController
         return new JsonResponse([
             'code' => $codeEntity->getCode(),
             'prize' => $codeEntity->getPrize(),
-            'isUsed' => $codeEntity->getIsUsed(),
+            'isUsed' => $codeEntity->isUsed(),
             'associatedUser' => $user->getEmail()
         ]);
     }

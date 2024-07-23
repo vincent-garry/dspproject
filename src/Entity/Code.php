@@ -19,18 +19,14 @@ use ApiPlatform\Metadata\Put;
         new GetCollection(),
         new Post(),
         new Put(),
-        new Patch(),
         new Patch(
             uriTemplate: '/codes/{code}/associate_user',
-            requirements: ['code' => '\+'],
+            requirements: ['code' => '.+'], // Adjust as needed
             controller: AssociateCodeToUserController::class,
             openapiContext: [
                 'summary' => 'Associate a code to a user',
                 'description' => 'Associates the given code to a user',
                 'requestBody' => [
-                    'parameters' => [
-                        'code' => 'code'
-                    ],
                     'content' => [
                         'application/merge-patch+json' => [
                             'schema' => [
