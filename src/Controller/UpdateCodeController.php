@@ -35,6 +35,8 @@ class UpdateCodeController extends AbstractController
         // Rechercher l'utilisateur par son adresse e-mail
         $user = $entityManager->getRepository(User::class)->findOneBy(['email' => 'vgarry7@gmail.com']);
 
+        dd($user);
+
         if (!$user) {
             throw new NotFoundHttpException('User not found');
         }
