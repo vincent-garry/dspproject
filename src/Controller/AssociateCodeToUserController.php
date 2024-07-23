@@ -8,13 +8,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
-#[AsController]
 class AssociateCodeToUserController extends AbstractController
 {
+    #[Route('/codes/{code}/associate_user', methods: ['PATCH'], name: 'associate_code_to_user')]
     public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $codeEntity = $entityManager->getRepository(Code::class)->findOneBy(['code' => $code]);
@@ -36,7 +36,7 @@ class AssociateCodeToUserController extends AbstractController
             throw new NotFoundHttpException('User not found');
         }
 
-        $codeEntity->setUsers($user);
+        $codeEntity->setUser($user);
         $codeEntity->setUsed(true);
         $entityManager->flush();
 
