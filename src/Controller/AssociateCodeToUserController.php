@@ -30,11 +30,12 @@ class AssociateCodeToUserController extends AbstractController
         $codeEntity = $entityManager->getRepository(Code::class)->findOneBy(['code' => $code]);
 
         if (!$codeEntity) {
-            $this->logger->error('Code not found');
+            $this->logger->error('Code not found for code: ' . $code);
             throw new NotFoundHttpException('Code not found');
         }
 
         $data = json_decode($request->getContent(), true);
+        $this->logger->info('Request data: ' . json_encode($data));
         $userEmail = $data['userEmail'] ?? null;
 
         if (!$userEmail) {
@@ -45,13 +46,15 @@ class AssociateCodeToUserController extends AbstractController
         $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $userEmail]);
 
         if (!$user) {
-            $this->logger->error('User not found');
+            $this->logger->error('User not found for email: ' . $userEmail);
             throw new NotFoundHttpException('User not found');
         }
 
         $codeEntity->setUser($user);
         $codeEntity->setUsed(true);
         $entityManager->flush();
+
+        $this->logger->info('Code successfully associated with user');
 
         return new JsonResponse([
             'code' => $codeEntity->getCode(),
