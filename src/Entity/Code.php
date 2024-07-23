@@ -25,6 +25,9 @@ class Code
     #[ORM\Column]
     private ?bool $isUsed = null;
 
+    #[ORM\Column]
+    private ?bool $delivry = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Code
     public function setUsed(bool $isUsed): static
     {
         $this->isUsed = $isUsed;
+
+        return $this;
+    }
+
+    public function isDelivry(): ?bool
+    {
+        return $this->delivry;
+    }
+
+    public function setDelivry(bool $delivry): static
+    {
+        $this->delivry = $delivry;
 
         return $this;
     }
