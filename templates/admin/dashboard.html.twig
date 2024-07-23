@@ -7,8 +7,13 @@
     {{ parent() }}
     <style>
         #myPieChart {
-            width: 300px !important;  /* Largeur souhaitée */
-            height: 300px !important; /* Hauteur souhaitée */
+            width: 600px !important;  /* Largeur souhaitée */
+            height: 400px !important; /* Hauteur souhaitée */
+        }
+
+        #genderBarChart {
+            width: 600px !important;  /* Largeur souhaitée */
+            height: 400px !important; /* Hauteur souhaitée */
         }
     </style>
 {% endblock %}
@@ -31,6 +36,8 @@
             <li>{{ gender }}: {{ count }}</li>
         {% endfor %}
     </ul>
+
+    <canvas id="genderBarChart"></canvas>
 
     <h2>Age statistiques</h2>
     <ul>
@@ -63,6 +70,56 @@
                 maintainAspectRatio: false, // Permet de contrôler la taille via CSS
                 plugins: {
                     legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        // Préparer les données pour Chart.js
+        const genderStats = {{ stats.genderStats|json_encode|raw }};
+
+        // Extraire les genres et les comptes
+        const labels = Object.keys(genderStats);
+        const data = Object.values(genderStats);
+
+        // Configuration du graphique
+        const ctx = document.getElementById('genderBarChart').getContext('2d');
+        const genderBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre par Genre',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Couleur de fond des barres
+                    borderColor: 'rgba(75, 192, 192, 1)', // Couleur des bordures des barres
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Permet de contrôler la taille via CSS
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
                         position: 'top',
                     },
                     tooltip: {
