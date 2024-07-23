@@ -22,13 +22,13 @@ use ApiPlatform\Metadata\Put;
         new Put(),
         new Patch(
             uriTemplate: '/codes/{code}/associate_user',
-            controller: UpdateCodeController::class,
             uriVariables: [
-                'code' => [Code::class, 'code'], // Spécifiez la classe et la propriété
+                'code' => [Code::class, 'code'], // Associe 'code' dans l'URL à la propriété 'code' dans l'entité Code
             ],
+            controller: UpdateCodeController::class,
             openapiContext: [
-                'summary' => 'Associate a user with a code and mark the code as used',
-                'description' => 'Associates a user with the code identified by {code}, and marks the code as used.',
+                'summary' => 'Associate a code with a user and mark the code as used',
+                'description' => 'Associates the given code with a user and marks the code as used.',
                 'requestBody' => [
                     'content' => [
                         'application/merge-patch+json' => [
