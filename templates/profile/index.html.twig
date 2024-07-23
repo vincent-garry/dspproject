@@ -25,7 +25,7 @@
             <div class="col-md-9">
                 <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
                 <p>Date de naissance : {{ app.user.birthdate ?: 'Non renseignée' }}</p>
-                <p>Genre : {{ app.user.gender }}</p>
+                <p>Genre : {% if app.user.gender == "male" %} Homme {% elseif app.user.gender == "female" %} Femme {% elseif app.user.gender == "other" %} Autre {% else %} Ne souhaite pas répondre {% endif %}</p>
                 <p>Adresse : {{ app.user.address }}</p>
                 <p>Nombre de gains : {{ app.user.codes|length }}</p>
 
