@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\AssociateCodeToUserController;
 use App\Repository\CodeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
@@ -18,6 +19,15 @@ use ApiPlatform\Metadata\Put;
         new Post(),
         new Put(),
         new Patch(),
+        new Patch(
+            name: 'associate_user',
+            uriTemplate: '/codes/{id}/associate_user',
+            controller: AssociateCodeToUserController::class,
+            openapiContext: [
+                'summary' => 'Associer un utilisateur à un code',
+                'description' => 'Associe le code donné à un utilisateur',
+            ],
+        ),
     ]
 )]
 #[ORM\Entity(repositoryClass: CodeRepository::class)]
