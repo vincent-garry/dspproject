@@ -82,7 +82,7 @@ class CodeController extends AbstractController
         }
 
         $codeEntity->setUsers($user);
-        $codeEntity->setIsUsed(true);
+        $codeEntity->setUsed(true);
         $this->entityManager->flush();
 
         return new JsonResponse([
