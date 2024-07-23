@@ -57,7 +57,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ code.prize }}</h5>
                             <p class="card-text">{{ code.code }}</p>
-                            <p class="card-text">{{ code.delivry }}</p>
+                            <p class="card-text">{% if code.delivry == true %}Produit récupéré{% else %}Produit non récupéré{% endif %}</p>
                         </div>
                     </div>
                 </div>
