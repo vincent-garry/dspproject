@@ -51,6 +51,7 @@ class Code
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[ApiProperty(identifier: false)]
     private ?int $id = null;
 
     #[ApiProperty(identifier: true)]
