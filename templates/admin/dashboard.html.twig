@@ -85,32 +85,27 @@
     </script>
 
     <script>
-        // Préparer les données pour Chart.js
+        const chartCanvas = document.getElementById('genderBarChart');
+        const chartContext = chartCanvas.getContext('2d');
         const genderStats = {{ stats.genderStats|json_encode|raw }};
+        const genderLabels = Object.keys(genderStats);
+        const genderData = Object.values(genderStats);
 
-        console.log(genderStats);
-
-        // Extraire les genres et les comptes
-        const labels = Object.keys(genderStats);
-        const data = Object.values(genderStats);
-
-        // Configuration du graphique
-        const ctx = document.getElementById('genderBarChart').getContext('2d');
-        const genderBarChart = new Chart(ctx, {
+        new Chart(chartContext, {
             type: 'bar',
             data: {
-                labels: labels,
+                labels: genderLabels,
                 datasets: [{
                     label: 'Nombre par Genre',
-                    data: data,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Couleur de fond des barres
-                    borderColor: 'rgba(75, 192, 192, 1)', // Couleur des bordures des barres
+                    data: genderData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Permet de contrôler la taille via CSS
+                maintainAspectRatio: false,
                 scales: {
                     x: {
                         beginAtZero: true
