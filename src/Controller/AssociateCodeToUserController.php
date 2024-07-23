@@ -11,15 +11,26 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Psr\Log\LoggerInterface;
 
 class AssociateCodeToUserController extends AbstractController
 {
+    private LoggerInterface $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     #[Route('/codes/{code}/associate_user', methods: ['PATCH'], name: 'associate_code_to_user')]
     public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
+        $this->logger->info('Controller invoked with code: ' . $code);
+
         $codeEntity = $entityManager->getRepository(Code::class)->findOneBy(['code' => $code]);
 
         if (!$codeEntity) {
+            $this->logger->error('Code not found');
             throw new NotFoundHttpException('Code not found');
         }
 
@@ -27,12 +38,14 @@ class AssociateCodeToUserController extends AbstractController
         $userEmail = $data['userEmail'] ?? null;
 
         if (!$userEmail) {
+            $this->logger->error('User email is required');
             throw new BadRequestHttpException('User email is required');
         }
 
         $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $userEmail]);
 
         if (!$user) {
+            $this->logger->error('User not found');
             throw new NotFoundHttpException('User not found');
         }
 
