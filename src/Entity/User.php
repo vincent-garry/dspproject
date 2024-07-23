@@ -2,38 +2,14 @@
 
 namespace App\Entity;
 
-use App\Controller\GetUserPrizesController;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 
-#[ApiResource(
-    operations: [
-        new Get(),
-        new GetCollection(),
-        new Post(),
-        new Put(),
-        new Patch(),
-        new Get(
-            name: 'get_user_prizes',
-            uriTemplate: '/users/{id}/prizes',
-            controller: GetUserPrizesController::class,
-            openapiContext: [
-                'summary' => 'Récupère tous les lots gagnés par un utilisateur',
-                'description' => 'Retourne la liste des codes et des prix associés à un utilisateur spécifique',
-            ],
-        ),
-    ]
-)]
+
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]

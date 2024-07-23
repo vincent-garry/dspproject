@@ -2,49 +2,9 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiProperty;
-use App\Controller\AssociateCodeToUserController;
-use App\Controller\UpdateCodeController;
 use App\Repository\CodeRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 
-#[ApiResource(
-    operations: [
-        new Get(),
-        new GetCollection(),
-        new Post(),
-        new Put(),
-        new Patch(
-            uriTemplate: '/codes/{code}/associate_user',
-            uriVariables: [
-                'code' => [Code::class, 'code']
-            ],
-            controller: UpdateCodeController::class,
-            openapiContext: [
-                'summary' => 'Associate a code with a user and mark the code as used',
-                'description' => 'Associates the given code with a user and marks the code as used.',
-                'requestBody' => [
-                    'content' => [
-                        'application/merge-patch+json' => [
-                            'schema' => [
-                                'type' => 'object',
-                                'properties' => [
-                                    'userEmail' => ['type' => 'string'],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ),
-    ]
-)]
 #[ORM\Entity(repositoryClass: CodeRepository::class)]
 class Code
 {
@@ -54,7 +14,6 @@ class Code
     private ?int $id = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[ApiProperty(identifier: true)]
     private ?string $code = null;
 
     #[ORM\Column(length: 255)]
