@@ -58,6 +58,8 @@ class UserController extends AbstractController
 
         return new JsonResponse([
             'email' => $user->getEmail(),
+            'prénom' => $user->getFirstName(),
+            'nom' => $user->getLastName(),
             'codes' => array_map(function ($code) {
                 return [
                     'code' => $code->getCode(),
