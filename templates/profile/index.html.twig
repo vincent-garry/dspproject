@@ -8,6 +8,7 @@
             cursor: pointer;
             margin-left: 10px;
         }
+
         .edit-form {
             display: none;
         }
@@ -31,7 +32,14 @@
                 </div>
 
                 <p>
-                    Date de naissance : <span id="birthdate-display">{{ app.user.birthdate|date('d/m/Y') }}</span>
+                    Date de naissance :
+                    <span id="birthdate-display">
+                    {% if app.user.birthdate %}
+                        {{ app.user.birthdate }}
+                    {% else %}
+                        Non renseignée
+                    {% endif %}
+                    </span>
                     <i class="fas fa-edit edit-icon" onclick="toggleEdit('birthdate')"></i>
                 </p>
                 <div id="birthdate-edit" class="edit-form">
@@ -67,7 +75,8 @@
             {% for code in app.user.codes|slice(0, 6) %}
                 <div class="col-md-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top" alt="{{ code.prize }}">
+                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top"
+                             alt="{{ code.prize }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ code.prize }}</h5>
                             <p class="card-text">{{ code.code }}</p>
@@ -84,6 +93,20 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script>
+        $(document).ready(function() {
+            $(".datepicker").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+            });
+        });
+    </script>
     <script>
         function toggleEdit(field) {
             const displayEl = document.getElementById(`${field}-display`);
@@ -100,7 +123,7 @@
             }
         }
 
-        document.getElementById('save-changes').addEventListener('click', function() {
+        document.getElementById('save-changes').addEventListener('click', function () {
             document.getElementById('edit-form').submit();
         });
     </script>

@@ -25,9 +25,13 @@ class UserEditType extends AbstractType
                     'Autre' => 'other',
                 ],
             ])
-            ->add('birthdate', DateType::class, [
-                'label' => 'Date de naissance ',
-                'widget' => 'single_text',
+            ->add('birthdate', TextType::class, [
+                'label' => 'Date de naissance',
+                'required' => false,
+                'attr' => [
+                    'class' => 'datepicker',
+                    'placeholder' => 'JJ/MM/AAAA'
+                ]
             ])
             ->add('address', TextType::class, ['label' => 'Adresse']);
     }
