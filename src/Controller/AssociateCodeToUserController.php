@@ -7,28 +7,43 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 #[AsController]
 class AssociateCodeToUserController extends AbstractController
 {
-    public function __invoke(Request $request, Code $code, EntityManagerInterface $entityManager): Code
+    public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
-        $userId = $request->request->get('userId');
-        if (!$userId) {
-            throw new BadRequestHttpException('User ID is required');
+        $codeEntity = $entityManager->getRepository(Code::class)->findOneBy(['code' => $code]);
+
+        if (!$codeEntity) {
+            throw new NotFoundHttpException('Code not found');
         }
 
-        $user = $entityManager->getRepository(User::class)->find($userId);
+        $data = json_decode($request->getContent(), true);
+        $userEmail = $data['userEmail'] ?? null;
+
+        if (!$userEmail) {
+            throw new BadRequestHttpException('User email is required');
+        }
+
+        $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $userEmail]);
+
         if (!$user) {
             throw new NotFoundHttpException('User not found');
         }
 
-        $code->setUsers($user);
+        $codeEntity->setUsers($user);
         $entityManager->flush();
 
-        return $code;
+        return new JsonResponse([
+            'code' => $codeEntity->getCode(),
+            'prize' => $codeEntity->getPrize(),
+            'isUsed' => $codeEntity->isUsed(),
+            'associatedUser' => $user->getEmail()
+        ]);
     }
 }

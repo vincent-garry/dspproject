@@ -20,12 +20,23 @@ use ApiPlatform\Metadata\Put;
         new Put(),
         new Patch(),
         new Patch(
-            name: 'associate_user',
             uriTemplate: '/codes/{code}/associate_user',
             controller: AssociateCodeToUserController::class,
             openapiContext: [
-                'summary' => 'Associer un utilisateur à un code',
-                'description' => 'Associe le code donné à un utilisateur',
+                'summary' => 'Associate a code to a user',
+                'description' => 'Associates the given code to a user',
+                'requestBody' => [
+                    'content' => [
+                        'application/json' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'userEmail' => ['type' => 'string'],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ),
     ]
