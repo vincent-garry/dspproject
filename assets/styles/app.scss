@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 /* assets/styles/custom.scss */
 
@@ -13,10 +13,65 @@ body {
   margin: 0 auto;
 }
 
+p {
+  font-family: "Noto Sans", sans-serif;
+  text-shadow: 0 2px 4px rgba(#000, 0.175);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.p-hover-25:hover {
+  opacity: 25%;
+}
+a {
+  font-family: "Noto Sans", sans-serif;
+}
+.p-green {
+  color: #8bc34a;
+  font-weight: 600;
+}
 /* Header */
 header {
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-main {
+  height: 100px;
+  // background: linear-gradient(
+  //     217deg,
+  //     rgba(0, 61, 36, 0.8),
+  //     rgba(4, 0, 5, 0) 70.71%
+  //   ),
+  //   linear-gradient(127deg, rgba(4, 24, 4, 0.8), rgba(0, 255, 0, 0) 70.71%),
+  //   linear-gradient(336deg, rgba(0, 0, 89, 0.8), rgba(86, 86, 89, 0) 70.71%);
+  background: linear-gradient(0.3turn, #222, #555);
+}
+.navbar-avatar-div {
+  width: 50px;
+  height: 50px;
+}
+.navbar-avatar-img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-avatar:hover {
+  opacity: 25%;
+}
+.navbar-logo {
+  height: 100px;
+  // height: 100px;
+}
+
+.submenu {
+  height: 100px;
+  background-color: #8bc34a;
+}
+
+.navbar-btn {
+  height: 60px;
+  width: 150px;
+  font-size: 16px !important;
 }
 
 nav ul {
@@ -35,6 +90,15 @@ nav ul li a {
   font-weight: bold;
 }
 
+footer {
+  background: linear-gradient(0.3turn, #222, #555);
+}
+.footer-logo {
+  height: 300px;
+}
+.footer-section-div-link {
+  width: 100%;
+}
 /* Boutons */
 .btn-primary {
   background-color: #28a745;
@@ -56,7 +120,7 @@ nav ul li a {
 .prize-item {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   text-align: center;
 }
@@ -70,7 +134,7 @@ nav ul li a {
 form {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-top: 2rem;
 }
@@ -86,7 +150,7 @@ form {
 .profile-info {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-bottom: 2rem;
 }
