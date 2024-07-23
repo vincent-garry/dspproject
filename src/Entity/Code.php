@@ -23,6 +23,13 @@ use ApiPlatform\Metadata\Put;
         new Post(
             uriTemplate: '/codes/{code}/associate_user',
             controller: UpdateCodeController::class,
+            uriVariables: [
+                'code' => [
+                    'type' => 'string',
+                    'description' => 'The code to associate',
+                    'required' => true,
+                ],
+            ],
             openapiContext: [
                 'summary' => 'Associate a user with a code and mark the code as used',
                 'description' => 'Associates a user with the code identified by {code}, and marks the code as used.',
