@@ -103,7 +103,7 @@ class CodeController extends AbstractController
 
         if($codeEntity->getUsers()->getFirstName()){
             $codeEntity->setDelivry(true);
-            $codeEntity->setIsUsed(true);
+            $codeEntity->setUsed(true);
             $this->entityManager->flush();
         } else{
             throw new BadRequestHttpException('Pas d\'utilisateur lié');
