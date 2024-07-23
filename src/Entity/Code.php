@@ -54,8 +54,9 @@ class Code
     #[ApiProperty(identifier: false)]
     private ?int $id = null;
 
-    #[ApiProperty(identifier: true)]
+
     #[ORM\Column(length: 255, unique: true)]
+    #[ApiProperty(identifier: true)]
     private ?string $code = null;
 
     #[ORM\Column(length: 255)]
