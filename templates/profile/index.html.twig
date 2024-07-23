@@ -2,6 +2,18 @@
 
 {% block title %}Mon Profil{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        .edit-icon {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .edit-form {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <div class="profile-info">
         <div class="row">
@@ -9,13 +21,45 @@
                 <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar" class="profile-avatar mb-3">
             </div>
             <div class="col-md-9">
-                <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
-                <p>{{ app.user.birthdate }}</p>
-                <p>{% if app.user.address != '' %}{{ app.user.address }}{% endif %}</p>
+                <h2>
+                    <span id="name-display">{{ app.user.firstName }} {{ app.user.lastName }}</span>
+                    <i class="fas fa-edit edit-icon" onclick="toggleEdit('name')"></i>
+                </h2>
+                <div id="name-edit" class="edit-form">
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                </div>
+
+                <p>
+                    Date de naissance : <span id="birthdate-display">{{ app.user.birthdate|date('d/m/Y') }}</span>
+                    <i class="fas fa-edit edit-icon" onclick="toggleEdit('birthdate')"></i>
+                </p>
+                <div id="birthdate-edit" class="edit-form">
+                    {{ form_row(form.birthdate) }}
+                </div>
+
+                <p>
+                    Genre : <span id="gender-display">{{ app.user.gender }}</span>
+                    <i class="fas fa-edit edit-icon" onclick="toggleEdit('gender')"></i>
+                </p>
+                <div id="gender-edit" class="edit-form">
+                    {{ form_row(form.gender) }}
+                </div>
+
+                <p>
+                    Adresse : <span id="address-display">{{ app.user.address }}</span>
+                    <i class="fas fa-edit edit-icon" onclick="toggleEdit('address')"></i>
+                </p>
+                <div id="address-edit" class="edit-form">
+                    {{ form_row(form.address) }}
+                </div>
+
                 <p>Nombre de gains : {{ app.user.codes|length }}</p>
             </div>
         </div>
     </div>
+
+    <button id="save-changes" class="btn btn-primary mt-3" style="display: none;">Enregistrer les modifications</button>
 
     <h3 class="mb-3">Mes gains</h3>
     <div class="prize-grid">
@@ -23,15 +67,41 @@
             {% for code in app.user.codes|slice(0, 6) %}
                 <div class="col-md-4">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top"
-                             alt="{{ code.prize }}">
+                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top" alt="{{ code.prize }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ code.prize }}</h5>
-                            <p class="card-text">code.code</p>
+                            <p class="card-text">{{ code.code }}</p>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
+
+    {{ form_start(form, {'attr': {'id': 'edit-form'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        function toggleEdit(field) {
+            const displayEl = document.getElementById(`${field}-display`);
+            const editEl = document.getElementById(`${field}-edit`);
+            const saveButton = document.getElementById('save-changes');
+
+            if (editEl.style.display === 'none') {
+                displayEl.style.display = 'none';
+                editEl.style.display = 'block';
+                saveButton.style.display = 'block';
+            } else {
+                displayEl.style.display = 'inline';
+                editEl.style.display = 'none';
+            }
+        }
+
+        document.getElementById('save-changes').addEventListener('click', function() {
+            document.getElementById('edit-form').submit();
+        });
+    </script>
 {% endblock %}
