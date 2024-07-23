@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UpdateCodeController extends AbstractController
 {
+    #[Route('/codes/{code}/associate_user', name: 'associate_code_to_user', methods: ['POST'])]
     public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         // Rechercher le code par son identifiant
