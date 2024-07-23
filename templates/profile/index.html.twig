@@ -58,7 +58,23 @@
     <button type="submit" id="save-changes" class="btn btn-primary mt-3">Enregistrer les modifications</button>
     {{ form_end(form) }}
 
-    {# ... le reste de votre template ... #}
+    <h3 class="mb-3">Mes gains</h3>
+    <div class="prize-grid">
+        <div class="row">
+            {% for code in app.user.codes|slice(0, 6) %}
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top"
+                             alt="{{ code.prize }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ code.prize }}</h5>
+                            <p class="card-text">{{ code.code }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
