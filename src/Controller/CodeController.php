@@ -92,4 +92,25 @@ class CodeController extends AbstractController
             'associatedUser' => $user->getEmail(),
         ]);
     }
+    #[Route('/api/codes/{code}/delivry', name: 'delivry_code_to_user', methods: ['PATCH'])]
+    public function delivryCode(string $code, Request $request): JsonResponse
+    {
+        $codeEntity = $this->codeRepository->findOneBy(['code' => $code]);
+
+        if (!$codeEntity) {
+            throw new NotFoundHttpException('Code not found');
+        }
+
+        if($codeEntity->getUsers()->getFirstName()){
+            $codeEntity->setDelivry(true);
+            $codeEntity->setIsUsed(true);
+            $this->entityManager->flush();
+        } else{
+            throw new BadRequestHttpException('Pas d\'utilisateur lié');
+        }
+
+        return new JsonResponse([
+            'Modifié avec succès'
+        ]);
+    }
 }
