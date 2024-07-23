@@ -7,8 +7,8 @@
     {{ parent() }}
     <style>
         #myPieChart {
-            width: 300px;  /* Largeur souhaitée */
-            height: 300px; /* Hauteur souhaitée */
+            width: 300px !important;  /* Largeur souhaitée */
+            height: 300px !important; /* Hauteur souhaitée */
         }
     </style>
 {% endblock %}
@@ -23,7 +23,7 @@
         <li>Nombre total de prix récupérés: {{ stats.totalPrizes }}</li>
     </ul>
     <!-- Élement canvas pour le graphique -->
-    <canvas id="myPieChart" width="200" height="200"></canvas>
+    <canvas id="myPieChart"></canvas>
 
     <h2>Genre statistiques</h2>
     <ul>
@@ -60,6 +60,7 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // Permet de contrôler la taille via CSS
                 plugins: {
                     legend: {
                         position: 'top',
@@ -71,9 +72,8 @@
                             }
                         }
                     }
-                },
-            },
-            maintainAspectRatio: false
+                }
+            }
         });
     </script>
 {% endblock %}
