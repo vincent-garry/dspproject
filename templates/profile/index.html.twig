@@ -23,12 +23,12 @@
             </div>
             <div class="col-md-9">
                 <h2>
-                    <span id="name-display">{{ app.user.first_name }} {{ app.user.last_name }}</span>
+                    <span id="name-display">{{ app.user.firstName }} {{ app.user.lastName }}</span>
                     <i class="fas fa-edit edit-icon" onclick="toggleEdit('name')"></i>
                 </h2>
                 <div id="name-edit" class="edit-form">
-                    {{ form_row(form.first_name) }}
-                    {{ form_row(form.last_name) }}
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
                 </div>
 
                 <p>
