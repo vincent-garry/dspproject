@@ -3,6 +3,21 @@
 
 {% block title %}Admin Dashboard{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #myPieChart {
+            width: 600px !important;  /* Largeur souhaitée */
+            height: 600px !important; /* Hauteur souhaitée */
+        }
+
+        #genderBarChart {
+            width: 600px !important;  /* Largeur souhaitée */
+            height: 400px !important; /* Hauteur souhaitée */
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Dashboard Administrateur</h1>
 
