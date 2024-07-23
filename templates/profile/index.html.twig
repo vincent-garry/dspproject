@@ -2,21 +2,8 @@
 
 {% block title %}Mon Profil{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        .edit-icon {
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .edit-form {
-            display: none;
-        }
-    </style>
-{% endblock %}
-
 {% block body %}
+    {{ form_start(form, {'attr': {'id': 'edit-form'}}) }}
     <div class="profile-info">
         <div class="row">
             <div class="col-md-3 text-center">
@@ -68,46 +55,14 @@
         </div>
     </div>
 
-    <button id="save-changes" class="btn btn-primary mt-3" style="display: none;">Enregistrer les modifications</button>
-
-    <h3 class="mb-3">Mes gains</h3>
-    <div class="prize-grid">
-        <div class="row">
-            {% for code in app.user.codes|slice(0, 6) %}
-                <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top"
-                             alt="{{ code.prize }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ code.prize }}</h5>
-                            <p class="card-text">{{ code.code }}</p>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    {{ form_start(form, {'attr': {'id': 'edit-form'}}) }}
+    <button type="submit" id="save-changes" class="btn btn-primary mt-3">Enregistrer les modifications</button>
     {{ form_end(form) }}
+
+    {# ... le reste de votre template ... #}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <script>
-        $(document).ready(function() {
-            $(".datepicker").datepicker({
-                dateFormat: 'dd/mm/yy',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "-100:+0"
-            });
-        });
-    </script>
     <script>
         function toggleEdit(field) {
             const displayEl = document.getElementById(`${field}-display`);
@@ -123,9 +78,5 @@
                 editEl.style.display = 'none';
             }
         }
-
-        document.getElementById('save-changes').addEventListener('click', function () {
-            document.getElementById('edit-form').submit();
-        });
     </script>
 {% endblock %}

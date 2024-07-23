@@ -20,6 +20,18 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer les données du formulaire
+            $data = $form->getData();
+
+            // Mettre à jour l'utilisateur
+            $user->setFirstName($data->getFirstName());
+            $user->setLastName($data->getLastName());
+            $user->setGender($data->getGender());
+            $user->setBirthdate($data->getBirthdate());
+            $user->setAddress($data->getAddress());
+
+            // Persister les changements
+            $entityManager->persist($user);
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre profil a été mis à jour avec succès.');
