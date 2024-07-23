@@ -22,7 +22,7 @@ class AssociateCodeToUserController extends AbstractController
         $this->logger = $logger;
     }
 
-    #[Route('/codes/{code}/associate_user', methods: ['PATCH'], name: 'associate_code_to_user')]
+    #[Route('/codes/{code}/associate_user', name: 'associate_code_to_user', methods: ['PATCH'])]
     public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         $this->logger->info('Controller invoked with code: ' . $code);
