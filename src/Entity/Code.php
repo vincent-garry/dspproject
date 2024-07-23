@@ -20,7 +20,7 @@ use ApiPlatform\Metadata\Put;
         new GetCollection(),
         new Post(),
         new Put(),
-        new Post(
+        new Patch(
             uriTemplate: '/codes/{code}/associate_user',
             controller: UpdateCodeController::class,
             uriVariables: [
