@@ -3,6 +3,16 @@
 
 {% block title %}Admin Dashboard{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #myPieChart {
+            width: 300px;  /* Largeur souhaitée */
+            height: 300px; /* Hauteur souhaitée */
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <h1>Dashboard Administrateur</h1>
 
@@ -42,7 +52,7 @@
                 labels: ['Tickets restants', 'Tickets utilisés'],
                 datasets: [{
                     label: 'Tickets',
-                    data: [remainingTickets, 100000],
+                    data: [remainingTickets, usedTickets],
                     backgroundColor: ['#0000FF', '#FF0000'], // Bleu pour les tickets restants, rouge pour les utilisés
                     borderColor: ['#FFFFFF', '#FFFFFF'],
                     borderWidth: 1
@@ -61,7 +71,17 @@
                             }
                         }
                     }
-                }
+                },
+                // Configuration supplémentaire pour la taille
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                        bottom: 10
+                    }
+                },
+                maintainAspectRatio: false // Permet de contrôler la taille via CSS
             }
         });
     </script>
