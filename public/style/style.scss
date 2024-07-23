@@ -45,24 +45,7 @@ nav ul li a {
 }
 
 /* Page d'accueil */
-.prize-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
 
-.prize-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
-    padding: 1rem;
-    text-align: center;
-}
-
-.prize-item img {
-    max-width: 100%;
-    height: auto;
-}
 
 /* Formulaires */
 form {
