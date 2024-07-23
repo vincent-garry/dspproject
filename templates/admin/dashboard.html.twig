@@ -10,8 +10,10 @@
     <ul>
         <li>Nombre total de ticket: {{ stats.totalTickets }}</li>
         <li>Tickets utilisés: {{ stats.usedTickets }}</li>
-        <li>Nombre total de prix gagnés: {{ stats.totalPrizes }}</li>
+        <li>Nombre total de prix récupérés: {{ stats.totalPrizes }}</li>
     </ul>
+    <!-- Élement canvas pour le graphique -->
+    <canvas id="myPieChart" width="400" height="400"></canvas>
 
     <h2>Genre statistiques</h2>
     <ul>
@@ -25,4 +27,42 @@
     </ul>
 
     <a href="{{ path('admin_email_data') }}">Voir les données d'emailing</a>
+
+    <script>
+        // Récupération des données de Twig
+        const totalTickets = {{ stats.totalTickets|json_encode|raw }};
+        const usedTickets = {{ stats.usedTickets|json_encode|raw }};
+        const remainingTickets = totalTickets - usedTickets;
+
+        // Configuration du graphique
+        const ctx = document.getElementById('myPieChart').getContext('2d');
+        const myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Tickets restants', 'Tickets utilisés'],
+                datasets: [{
+                    label: 'Tickets',
+                    data: [remainingTickets, usedTickets],
+                    backgroundColor: ['#0000FF', '#FF0000'], // Bleu pour les tickets restants, rouge pour les utilisés
+                    borderColor: ['#FFFFFF', '#FFFFFF'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
 {% endblock %}
