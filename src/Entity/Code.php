@@ -31,7 +31,7 @@ use ApiPlatform\Metadata\Put;
                 'description' => 'Associates a user with the code identified by {code}, and marks the code as used.',
                 'requestBody' => [
                     'content' => [
-                        'application/json' => [
+                        'application/merge-patch+json' => [
                             'schema' => [
                                 'type' => 'object',
                                 'properties' => [
