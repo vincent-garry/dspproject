@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\User;
@@ -44,8 +43,8 @@ class UserController extends AbstractController
         return new JsonResponse($userData);
     }
 
-    #[Route('/api/users/{email}', name: 'get_user', methods: ['GET'])]
-    public function getUser(string $email): JsonResponse
+    #[Route('/api/users/{email}', name: 'fetch_user_by_email', methods: ['GET'])]
+    public function fetchUserByEmail(string $email): JsonResponse
     {
         $user = $this->userRepository->findOneBy(['email' => $email]);
 
@@ -65,4 +64,3 @@ class UserController extends AbstractController
         ]);
     }
 }
-
