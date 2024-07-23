@@ -10,9 +10,6 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
-        api:
-            pattern: ^/api
-            stateless: true
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -39,8 +36,6 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-         - { path: ^/api/docs, roles: PUBLIC_ACCESS } # Swagger UI
-         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
