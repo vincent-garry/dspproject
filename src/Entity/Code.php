@@ -28,7 +28,7 @@ use ApiPlatform\Metadata\Put;
                 'description' => 'Associates the given code to a user',
                 'requestBody' => [
                     'content' => [
-                        'application/json' => [
+                        'application/merge-patch+json' => [
                             'schema' => [
                                 'type' => 'object',
                                 'properties' => [
