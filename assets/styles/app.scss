@@ -108,3 +108,21 @@ form {
     margin-bottom: 0.5rem;
   }
 }
+
+#myPieChart {
+  width: 600px !important;  /* Largeur souhaitée */
+  height: 600px !important; /* Hauteur souhaitée */
+}
+
+#genderBarChart {
+  width: 600px !important;  /* Largeur souhaitée */
+  height: 400px !important; /* Hauteur souhaitée */
+}
+
+.edit-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+#edit-form {
+  display: none;
+}
