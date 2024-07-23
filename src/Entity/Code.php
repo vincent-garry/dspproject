@@ -23,7 +23,7 @@ use ApiPlatform\Metadata\Put;
         new Patch(
             uriTemplate: '/codes/{code}/associate_user',
             uriVariables: [
-                'code' => [Code::class, 'code'], // Associe 'code' dans l'URL à la propriété 'code' dans l'entité Code
+                'code' => [Code::class, 'code']
             ],
             controller: UpdateCodeController::class,
             openapiContext: [
@@ -53,7 +53,6 @@ class Code
     #[ORM\Column]
     #[ApiProperty(identifier: false)]
     private ?int $id = null;
-
 
     #[ORM\Column(length: 255, unique: true)]
     #[ApiProperty(identifier: true)]
