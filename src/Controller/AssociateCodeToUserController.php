@@ -37,6 +37,7 @@ class AssociateCodeToUserController extends AbstractController
         }
 
         $codeEntity->setUsers($user);
+        $codeEntity->setUsed(true);
         $entityManager->flush();
 
         return new JsonResponse([
