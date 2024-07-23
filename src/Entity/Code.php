@@ -21,7 +21,7 @@ use ApiPlatform\Metadata\Put;
         new Put(),
         new Patch(),
         new Patch(
-            uriTemplate: '/codes/{code}/associate_user',
+            uriTemplate: '/codes/{id}/associate_user',
             controller: AssociateCodeToUserController::class,
             openapiContext: [
                 'summary' => 'Associate a code to a user',
