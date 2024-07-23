@@ -20,6 +20,26 @@ use ApiPlatform\Metadata\Put;
         new Post(),
         new Put(),
         new Patch(),
+        new Patch(
+            uriTemplate: '/codes/{code}/associate_user',
+            controller: AssociateCodeToUserController::class,
+            openapiContext: [
+                'summary' => 'Associate a code to a user',
+                'description' => 'Associates the given code to a user',
+                'requestBody' => [
+                    'content' => [
+                        'application/json' => [
+                            'schema' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'userEmail' => ['type' => 'string'],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ),
     ]
 )]
 #[ORM\Entity(repositoryClass: CodeRepository::class)]
@@ -94,30 +114,5 @@ class Code
         $this->isUsed = $isUsed;
 
         return $this;
-    }
-
-    #[Post(
-        uriTemplate: '/codes/{code}/associate_user',
-        controller: AssociateCodeToUserController::class,
-        openapiContext: [
-            'summary' => 'Associate a code to a user',
-            'description' => 'Associates the given code to a user',
-            'requestBody' => [
-                'content' => [
-                    'application/json' => [
-                        'schema' => [
-                            'type' => 'object',
-                            'properties' => [
-                                'userEmail' => ['type' => 'string'],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    )]
-    public function associateUser(string $userEmail): void
-    {
-        // Cette méthode peut rester vide, elle sert juste à définir l'opération
     }
 }
