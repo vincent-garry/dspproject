@@ -15,8 +15,8 @@ class UserEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('firstName', TextType::class, ['label' => 'Prénom'])
-            ->add('lastName', TextType::class, ['label' => 'Nom'])
+            ->add('first_name', TextType::class, ['label' => 'Prénom'])
+            ->add('last_name', TextType::class, ['label' => 'Nom'])
             ->add('gender', ChoiceType::class, [
                 'label' => 'Genre',
                 'choices' => [
