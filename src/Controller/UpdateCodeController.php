@@ -11,56 +11,46 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Psr\Log\LoggerInterface;
 
-class AssociateCodeToUserController extends AbstractController
+class UpdateCodeController extends AbstractController
 {
-    private LoggerInterface $logger;
-
-    public function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-
-    #[Route('/codes/{code}/associate_user', name: 'associate_code_to_user', methods: ['PATCH'])]
     public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
-        $this->logger->info('Controller invoked with code: ' . $code);
-
+        // Rechercher le code par son identifiant
         $codeEntity = $entityManager->getRepository(Code::class)->findOneBy(['code' => $code]);
 
         if (!$codeEntity) {
-            $this->logger->error('Code not found for code: ' . $code);
             throw new NotFoundHttpException('Code not found');
         }
 
+        // Récupérer les données de la requête
         $data = json_decode($request->getContent(), true);
-        $this->logger->info('Request data: ' . json_encode($data));
         $userEmail = $data['userEmail'] ?? null;
 
         if (!$userEmail) {
-            $this->logger->error('User email is required');
             throw new BadRequestHttpException('User email is required');
         }
 
+        // Rechercher l'utilisateur par son adresse e-mail
         $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $userEmail]);
 
         if (!$user) {
-            $this->logger->error('User not found for email: ' . $userEmail);
             throw new NotFoundHttpException('User not found');
         }
 
-        $codeEntity->setUser($user);
+        // Associer l'utilisateur au code et marquer le code comme utilisé
+        $codeEntity->setUsers($user);
         $codeEntity->setIsUsed(true);
+
+        // Sauvegarder les modifications
         $entityManager->flush();
 
-        $this->logger->info('Code successfully associated with user');
-
+        // Réponse
         return new JsonResponse([
             'code' => $codeEntity->getCode(),
             'prize' => $codeEntity->getPrize(),
             'isUsed' => $codeEntity->isUsed(),
-            'associatedUser' => $user->getEmail()
+            'associatedUser' => $user->getEmail(),
         ]);
     }
 }

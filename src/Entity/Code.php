@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiProperty;
 use App\Controller\AssociateCodeToUserController;
+use App\Controller\UpdateCodeController;
 use App\Repository\CodeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
@@ -19,17 +20,15 @@ use ApiPlatform\Metadata\Put;
         new GetCollection(),
         new Post(),
         new Put(),
-        new Patch(
+        new Post(
             uriTemplate: '/codes/{code}/associate_user',
-            requirements: ['code' => '.+'], // Adjust as needed
-            parameters: ['code' => 'code'],
-            controller: AssociateCodeToUserController::class,
+            controller: UpdateCodeController::class,
             openapiContext: [
-                'summary' => 'Associate a code to a user',
-                'description' => 'Associates the given code to a user',
+                'summary' => 'Associate a user with a code and mark the code as used',
+                'description' => 'Associates a user with the code identified by {code}, and marks the code as used.',
                 'requestBody' => [
                     'content' => [
-                        'application/merge-patch+json' => [
+                        'application/json' => [
                             'schema' => [
                                 'type' => 'object',
                                 'properties' => [
