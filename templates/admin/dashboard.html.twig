@@ -23,7 +23,7 @@
         <li>Nombre total de prix récupérés: {{ stats.totalPrizes }}</li>
     </ul>
     <!-- Élement canvas pour le graphique -->
-    <canvas id="myPieChart" width="50" height="50"></canvas>
+    <canvas id="myPieChart" width="200" height="200"></canvas>
 
     <h2>Genre statistiques</h2>
     <ul>
@@ -72,9 +72,8 @@
                         }
                     }
                 },
-                width: 200,
-                height: 200,
-            }
+            },
+            maintainAspectRatio: false
         });
     </script>
 {% endblock %}
