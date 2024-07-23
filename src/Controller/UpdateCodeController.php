@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UpdateCodeController extends AbstractController
 {
-    #[Route('/codes/{code}/associate_user', name: 'associate_code_to_user', methods: ['PATCH'])]
+    #[Route('/codes/{code}/associate_user', name: 'associate_code_to_user', methods: ['PATCH', 'GET'])]
     public function __invoke(string $code, Request $request, EntityManagerInterface $entityManager): JsonResponse
     {
         // Rechercher le code par son identifiant
@@ -25,12 +25,12 @@ class UpdateCodeController extends AbstractController
         }
 
         // Récupérer les données de la requête
-        $data = json_decode($request->getContent(), true);
-        $userEmail = $data['userEmail'] ?? null;
+        //$data = json_decode($request->getContent(), true);
+        //$userEmail = $data['userEmail'] ?? null;
 
-        if (!$userEmail) {
-            throw new BadRequestHttpException('User email is required');
-        }
+        //if (!$userEmail) {
+        //    throw new BadRequestHttpException('User email is required');
+        //}
 
         // Rechercher l'utilisateur par son adresse e-mail
         $user = $entityManager->getRepository(User::class)->findOneBy(['email' => 'vgarry7@gmail.com']);
