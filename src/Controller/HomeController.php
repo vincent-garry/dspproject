@@ -12,11 +12,11 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $prizes = [
-            ['name' => 'Infuseur à thé', 'image' => 'infuseur.jpg', 'description' => 'Un infuseur à thé pratique'],
-            ['name' => 'Boîte de thé détox', 'image' => 'detox.jpg', 'description' => '100g de thé détox'],
-            ['name' => 'Boîte de thé signature', 'image' => 'signature.jpg', 'description' => '100g de thé signature'],
-            ['name' => 'Coffret découverte 39€', 'image' => 'coffret39.jpg', 'description' => 'Un assortiment de thés'],
-            ['name' => 'Coffret découverte 69€', 'image' => 'coffret69.jpg', 'description' => 'Notre meilleur assortiment'],
+            ['name' => 'Infuseur à thé', 'image' => 'Infuseur à thé.jpg', 'description' => 'Un infuseur à thé pratique', 'price' => "15,40", 'rank' => 1],
+            ['name' => 'Boîte de thé détox', 'image' => 'Boîte de thé détox.jpg', 'description' => '100g de thé détox', 'price' => "25,45", 'rank' => 2],
+            ['name' => 'Boîte de thé signature', 'image' => 'Boîte de thé signature.jpg', 'description' => '100g de thé signature', 'price' => "78,99", 'rank' => 3],
+            ['name' => 'Coffret découverte 39 €', 'image' => 'Coffret découverte 39€.jpg', 'description' => 'Un assortiment de thés', 'price' => "39", 'rank' => 0],
+            ['name' => 'Coffret découverte 69 €', 'image' => 'Coffret découverte 69€.jpg', 'description' => 'Notre meilleur assortiment', 'price' => "69", 'rank' => 0]
         ];
 
         return $this->render('home/index.html.twig', [

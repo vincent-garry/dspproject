@@ -1,20 +1,114 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "./variables";
+
 /* assets/styles/custom.scss */
 
 /* Styles généraux */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+p,
+h1,
+h2 {
+  font-family: "Noto Sans", sans-serif;
+  text-shadow: 0 2px 4px rgba(#000, 0.175);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.hover-25:hover {
+  opacity: 25%;
+}
+a {
+  font-family: "Noto Sans", sans-serif;
+}
+.p-green {
+  color: #8bc34a;
+  font-weight: 600;
 }
 
+/* Boutons */
+.btn-primary {
+  background-color: $lightgreen-color;
+  border-color: $lightgreen-color;
+}
+
+.btn-secondary {
+  background-color: $blue-color;
+  border-color: $blue-color;
+}
+
+.btn-terciary {
+  background-color: $blue-color;
+  border-color: $blue-color;
+}
+
+.btn {
+  & {
+    transition: transform 1s ease-in-out;
+    &:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+  }
+}
+.btn-loterie {
+  background-color: $pink-color !important;
+  border-color: $pink-color !important;
+  width: 300px;
+  height: 80px;
+}
+
+/* ICON */
+
+.navbar-icon-logout {
+  width: 70px;
+  height: 70px;
+}
 /* Header */
-header {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+
+// header {
+//   background-color: #ffffff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// }
+
+.navbar-main {
+  height: 100px;
+  // background: linear-gradient(
+  //     217deg,
+  //     rgba(0, 61, 36, 0.8),
+  //     rgba(4, 0, 5, 0) 70.71%
+  //   ),
+  //   linear-gradient(127deg, rgba(4, 24, 4, 0.8), rgba(0, 255, 0, 0) 70.71%),
+  //   linear-gradient(336deg, rgba(0, 0, 89, 0.8), rgba(86, 86, 89, 0) 70.71%);
+  background: linear-gradient(0.3turn, #222, #555);
+}
+.navbar-avatar-div {
+  width: 50px;
+  height: 50px;
+}
+.navbar-avatar-img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-avatar:hover {
+  opacity: 25%;
+}
+.navbar-logo {
+  height: 100px;
+  // height: 100px;
+}
+
+.submenu {
+  height: 70px;
+  background-color: $green-color;
+}
+
+.navbar-btn {
+  height: 60px;
+  width: 150px;
+  font-size: 16px !important;
 }
 
 nav ul {
@@ -33,25 +127,59 @@ nav ul li a {
   font-weight: bold;
 }
 
-/* Boutons */
-.btn-primary {
-  background-color: #28a745;
-  border-color: #28a745;
+footer {
+  background: linear-gradient(0.3turn, #222, #555);
 }
-
-.btn-secondary {
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+.footer-logo {
+  height: 300px;
+}
+.footer-section-div-link {
+  width: 100%;
 }
 
 /* Page d'accueil */
 
+// .prize-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+//   gap: 1rem;
+// }
+
+.card-rank {
+  height: 50px;
+  width: 50px;
+  opacity: 0.8;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  transform: rotate(-30deg);
+}
+.card-rank-1 {
+  background-color: $rank-1-color;
+}
+.card-rank-2 {
+  background-color: $rank-2-color;
+}
+.card-rank-3 {
+  background-color: $rank-3-color;
+}
+.prize-item {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+}
+
+.prize-item img {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
 
 /* Formulaires */
 form {
-  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-top: 2rem;
 }
@@ -65,9 +193,8 @@ form {
 
 /* Page de profil */
 .profile-info {
-  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-bottom: 2rem;
 }
@@ -79,7 +206,44 @@ form {
   object-fit: cover;
 }
 
+#myPieChart {
+  width: 600px !important; /* Largeur souhaitée */
+  height: 600px !important; /* Hauteur souhaitée */
+}
+
+#genderBarChart {
+  width: 600px !important; /* Largeur souhaitée */
+  height: 400px !important; /* Hauteur souhaitée */
+}
+
+.edit-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+#edit-form {
+  display: none;
+}
+
+// fancy shit
+
+.zoom-1-1 {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 /* Responsive design */
+@media (max-width: 1080px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
@@ -90,20 +254,12 @@ form {
   }
 }
 
-#myPieChart {
-  width: 600px !important;  /* Largeur souhaitée */
-  height: 600px !important; /* Hauteur souhaitée */
-}
+@media (max-width: 320px) {
+  nav ul {
+    flex-direction: column;
+  }
 
-#genderBarChart {
-  width: 600px !important;  /* Largeur souhaitée */
-  height: 400px !important; /* Hauteur souhaitée */
-}
-
-.edit-icon {
-  cursor: pointer;
-  margin-left: 10px;
-}
-#edit-form {
-  display: none;
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
 }
