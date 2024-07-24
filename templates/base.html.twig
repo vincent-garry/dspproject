@@ -20,55 +20,10 @@
         {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{{ path('app_home') }}">Loterie</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_lottery') }}">Loterie</a>
-                    </li>
-                    {% if app.user %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_my_prizes') }}">Mes gains</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_profile') }}">Mon Profil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                        </li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin">Centre d'administration</a>
-                            </li>
-                        {% endif %}
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'components/header.html.twig' %}
     <main class="container mt-4">
         {% block body %}{% endblock %}
     </main>
-
-    <footer class="mt-5 py-3 bg-light">
-        <div class="container text-center">
-            <p>&copy; 2024 Il s’agit d’un projet étudiant fictif pour lequel aucun réel achat ou aucune réservation ne pourrait être effectué</p>
-        </div>
-    </footer>
+    {% include 'components/footer.html.twig' %}
     </body>
 </html>
