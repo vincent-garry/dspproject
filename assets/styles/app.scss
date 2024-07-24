@@ -1,25 +1,22 @@
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "./variables";
 
 /* assets/styles/custom.scss */
 
 /* Styles généraux */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  font-family: "Noto Sans", sans-serif;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-p {
+p,
+h1,
+h2 {
   font-family: "Noto Sans", sans-serif;
   text-shadow: 0 2px 4px rgba(#000, 0.175);
   padding: 0 !important;
   margin: 0 !important;
 }
-.p-hover-25:hover {
+.hover-25:hover {
   opacity: 25%;
 }
 a {
@@ -29,11 +26,51 @@ a {
   color: #8bc34a;
   font-weight: 600;
 }
-/* Header */
-header {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+/* Boutons */
+.btn-primary {
+  background-color: $lightgreen-color;
+  border-color: $lightgreen-color;
 }
+
+.btn-secondary {
+  background-color: $blue-color;
+  border-color: $blue-color;
+}
+
+.btn-terciary {
+  background-color: $blue-color;
+  border-color: $blue-color;
+}
+
+.btn {
+  & {
+    transition: transform 1s ease-in-out;
+    &:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+  }
+}
+.btn-loterie {
+  background-color: $pink-color !important;
+  border-color: $pink-color !important;
+  width: 300px;
+  height: 80px;
+}
+
+/* ICON */
+
+.navbar-icon-logout {
+  width: 70px;
+  height: 70px;
+}
+/* Header */
+
+// header {
+//   background-color: #ffffff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// }
 
 .navbar-main {
   height: 100px;
@@ -64,8 +101,8 @@ header {
 }
 
 .submenu {
-  height: 100px;
-  background-color: #8bc34a;
+  height: 70px;
+  background-color: $green-color;
 }
 
 .navbar-btn {
@@ -99,26 +136,33 @@ footer {
 .footer-section-div-link {
   width: 100%;
 }
-/* Boutons */
-.btn-primary {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-.btn-secondary {
-  background-color: #17a2b8;
-  border-color: #17a2b8;
-}
 
 /* Page d'accueil */
-.prize-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
 
+// .prize-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+//   gap: 1rem;
+// }
+.card-rank {
+  height: 50px;
+  width: 50px;
+  opacity: 0.8;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  transform: rotate(-30deg);
+}
+.card-rank-1 {
+  background-color: $rank-1-color;
+}
+.card-rank-2 {
+  background-color: $rank-2-color;
+}
+.card-rank-3 {
+  background-color: $rank-3-color;
+}
 .prize-item {
-  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
@@ -128,11 +172,11 @@ footer {
 .prize-item img {
   max-width: 100%;
   height: auto;
+  position: relative;
 }
 
 /* Formulaires */
 form {
-  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -148,7 +192,6 @@ form {
 
 /* Page de profil */
 .profile-info {
-  background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -162,8 +205,35 @@ form {
   object-fit: cover;
 }
 
+.zoom-1-1 {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 /* Responsive design */
+@media (max-width: 1080px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav ul li {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 320px) {
   nav ul {
     flex-direction: column;
   }
