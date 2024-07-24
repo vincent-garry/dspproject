@@ -66,13 +66,14 @@ class FacebookAuthenticator extends OAuth2Authenticator
 
                     // Ces champs peuvent être null si l'utilisateur n'a pas donné l'autorisation
                     $user->setGender($facebookUser->getGender());
-                    dd($user);
 
                     // La date de naissance peut ne pas être disponible ou dans un format différent
-                    $birthday = $facebookUser->getBirthday();
+                    $birthday = $facebookUser->getMaxAge();
                     if ($birthday) {
                         $user->setBirthdate(new \DateTime($birthday));
                     }
+                    $adresse = $facebookUser->getHometown();
+                    dd($user);
 
                     // L'adresse n'est généralement pas disponible via Facebook, donc on la laisse vide
                     $user->setAddress('');
