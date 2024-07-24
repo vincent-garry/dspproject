@@ -73,7 +73,7 @@ class FacebookAuthenticator extends OAuth2Authenticator
                         $user->setBirthdate(new \DateTime($birthday));
                     }
                     $adresse = $facebookUser->getHometown();
-                    dd($user);
+                    dd($facebookUser);
 
                     // L'adresse n'est généralement pas disponible via Facebook, donc on la laisse vide
                     $user->setAddress('');
