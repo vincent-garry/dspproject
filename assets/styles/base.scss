@@ -28,19 +28,19 @@ a {
 }
 
 /* Boutons */
-.btn-primary {
-  background-color: $lightgreen-color;
-  border-color: $lightgreen-color;
+.btn-lightgreen {
+  background-color: $lightgreen-color !important;
+  border-color: $lightgreen-color !important;
 }
 
-.btn-secondary {
-  background-color: $blue-color;
-  border-color: $blue-color;
+.btn-blue {
+  background-color: $blue-color !important;
+  border-color: $blue-color !important;
 }
 
-.btn-terciary {
-  background-color: $blue-color;
-  border-color: $blue-color;
+.btn-darkblue {
+  background-color: $darkblue-color !important;
+  border-color: $darkblue-color !important;
 }
 
 .btn {

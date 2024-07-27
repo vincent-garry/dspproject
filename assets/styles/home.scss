@@ -2,11 +2,6 @@
 
 /* Page d'accueil */
 
-// .prize-grid {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-//   gap: 1rem;
-// }
 .card-home {
   max-width: 300px;
 }
@@ -41,7 +36,7 @@
   position: relative;
 }
 
-.btn-loterie {
+.btn-lottery {
   background-color: $pink-color !important;
   border-color: $pink-color !important;
   width: 300px;
