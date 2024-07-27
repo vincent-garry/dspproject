@@ -1,8 +1,9 @@
 /* Styles généraux */
 body {
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif !important;
 }
 main {
+  text-align: center;
   min-height: 100vh;
 }
 
@@ -62,12 +63,36 @@ a {
   }
 }
 
-/* Input */
 select,
 button,
 input {
   border-radius: 25px !important;
 }
+
+/* Card */
+
+.card-prize {
+  max-width: 300px;
+}
+.card-rank {
+  height: 50px;
+  width: 50px;
+  opacity: 0.8;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  transform: rotate(-30deg);
+}
+.card-rank-1 {
+  background-color: $rank-1-color;
+}
+.card-rank-2 {
+  background-color: $rank-2-color;
+}
+.card-rank-3 {
+  background-color: $rank-3-color;
+}
+
 /* Formulaires */
 form {
   border-radius: 8px;

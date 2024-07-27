@@ -1,0 +1,20 @@
+.card-bg-0 {
+  background-color: $card-light !important;
+  &:hover {
+    .p-delivered {
+      opacity: 200%;
+      color: $blue-color;
+    }
+  }
+}
+.card-bg-1 {
+  background-color: $card-delivered !important;
+  opacity: 50%;
+
+  &:hover {
+    .p-delivered {
+      opacity: 200%;
+      color: $pink-color;
+    }
+  }
+}

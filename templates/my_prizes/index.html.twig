@@ -3,24 +3,33 @@
 {% block title %}Mes gains{% endblock %}
 
 {% block body %}
-    <h1>Mes gains</h1>
+    <h1 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Mes gains</h1>
     {% if prizes is empty %}
         <p>Vous n'avez pas encore de gains.</p>
     {% else %}
-        <div class="prize-grid">
-            <div class="row">
+        <div class="d-flex flex-column align-items-center justify-content-center gap-5 prize-grid">
+            <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
                 {% for prize in prizes %}
-                    <div class="col-md-4">
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('images/' ~ prize.prize ~ '.jpg') }}" class="card-img-top" alt="{{ prize.prize }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ prize.prize }}</h5>
-                                <p class="card-text">{{ prize.code }}</p>
-                                <p class="card-text">{% if prize.delivry == true %}Produit récupéré{% else %}Produit non récupéré{% endif %}</p>
-                            </div>
+                    <div class="card card-prize card-bg-{{ prize.delivry  ? '1' : '0  zoom-1-1' }}">
+                        <div class="card p-2 border-0">
+                            <img src="{{ asset('images/' ~ prize.prize ~ '.jpg' ) }}" class="card-img-top" alt="{{ prize.prize }}">
+                            {# {% if prize.rank %}
+                                <div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
+                            {% endif %} #}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ prize.prize }}</h5>
+                            <p class="card-text">Code : {{ prize.code }}</p>
+                            <p class="card-text p-delivered">
+                                {% if prize.delivry == true %}
+                                    Produit récupéré
+                                {% else %}
+                                    Produit non récupéré
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
     {% endif %}

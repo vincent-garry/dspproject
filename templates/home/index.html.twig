@@ -3,11 +3,11 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mb-4 fs-2 fw-semibold pt-5 pb-5">Les différents lots à gagner</h1>
+    <h1 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Les différents lots à gagner</h1>
     <div class="d-flex flex-column align-items-center justify-content-center gap-5 prize-grid">
         <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
         {% for prize in prizes %}
-            <div class="card card-home zoom-1-1">
+            <div class="card card-prize zoom-1-1">
                 <div class="card p-2 border-0">
                     <img src="{{ asset('images/' ~ prize.image ) }}" class="card-img-top" alt="{{ prize.name }}">
                     {% if prize.rank %}

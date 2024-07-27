@@ -3,7 +3,7 @@
 {% block title %}Loterie{% endblock %}
 
 {% block body %}
-    <div class="form-container text-center">
+    <div class="form-container">
         <h1 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Tentez votre chance !<br>Entrez votre code</h1>
         <form action="{{ path('app_lottery_submit') }}" method="post" class="form-lottery shadow-none d-flex align-items-center flex-column gap-5 w-100">
             <input type="text" name="code" class=" form-control form-control-lg text-center" placeholder="Votre code ici" required>
