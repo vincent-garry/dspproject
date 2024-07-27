@@ -7,7 +7,6 @@
     <div class="d-flex flex-column align-items-center justify-content-center gap-5 prize-grid">
         <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
         {% for prize in prizes %}
-            {# <div class="card" style="width: 18rem;"> #}
             <div class="card card-home zoom-1-1">
                 <div class="card p-2 border-0">
                     <img src="{{ asset('images/' ~ prize.image ) }}" class="card-img-top" alt="{{ prize.name }}">
@@ -24,7 +23,7 @@
         {% endfor %}
         </div>
         <div class="d-flex align-items-center justify-content-center pt-3">
-            <a href="{{ path('app_lottery') }}" class="btn-lottery btn hover-25 rounded-pill">
+            <a href="{{ path('app_lottery') }}" class="btn-pink btn-lottery btn hover-25 rounded-pill">
                 <p class="text-white fs-2 d-flex align-items-center h-100 justify-content-center">Loterie</p>
             </a>
         </div>

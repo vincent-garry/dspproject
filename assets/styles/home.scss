@@ -37,8 +37,6 @@
 }
 
 .btn-lottery {
-  background-color: $pink-color !important;
-  border-color: $pink-color !important;
   width: 300px;
   height: 80px;
 }
@@ -52,10 +50,5 @@
         font-size: 20px !important;
       }
     }
-  }
-}
-
-@media (max-width: 780px) {
-  main {
   }
 }

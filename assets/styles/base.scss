@@ -10,7 +10,8 @@ main {
 
 p,
 h1,
-h2 {
+h2,
+h3 {
   font-family: "Noto Sans", sans-serif;
   text-shadow: 0 2px 4px rgba(#000, 0.175);
   padding: 0 !important;
@@ -30,17 +31,23 @@ a {
 /* Boutons */
 .btn-lightgreen {
   background-color: $lightgreen-color !important;
-  border-color: $lightgreen-color !important;
+  border-color: $darkblue-color !important;
 }
-
+.btn-green {
+  background-color: $green-color !important;
+  border-color: $darkblue-color !important;
+}
 .btn-blue {
   background-color: $blue-color !important;
-  border-color: $blue-color !important;
+  border-color: $darkblue-color !important;
 }
-
 .btn-darkblue {
   background-color: $darkblue-color !important;
   border-color: $darkblue-color !important;
+}
+.btn-pink {
+  background-color: $pink-color !important;
+  border-color: $pink-color !important;
 }
 
 .btn {
@@ -53,10 +60,13 @@ a {
   }
 }
 
+/* Input */
+input {
+  border-radius: 25px !important;
+}
 /* Formulaires */
 form {
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   margin-top: 2rem;
 }

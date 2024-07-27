@@ -1,0 +1,31 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.login {
+  .btn-login {
+    height: 50px;
+  }
+  .login-form,
+  .login-other-auth {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1080px) or (max-device-width: 1080px) {
+  .login {
+    flex-direction: column;
+    // p {
+    //   font-size: 14px;
+    // }
+    .login-form,
+    .login-other-auth {
+      width: 90%;
+    }
+  }
+  //   .submenu {
+  //     height: 50px;
+
+  //     p {
+  //       font-size: 20px;
+  //     }
+  //   }
+}
