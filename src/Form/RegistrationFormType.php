@@ -55,9 +55,13 @@ class RegistrationFormType extends AbstractType
                 ],
                 'required' => true,
             ])
-            ->add('birthdate', BirthdayType::class, [
+            ->add('birthdate', TextType::class, [
                 'label' => 'Date de naissance',
-                'attr' => ['placeholder' => 'Date de naissance', 'class' => 'form-control'],
+                'required' => false,
+                'attr' => [
+                    'class' => 'datepicker',
+                    'placeholder' => 'JJ/MM/AAAA'
+                ]
             ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse postale',
