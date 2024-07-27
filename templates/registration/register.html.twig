@@ -3,22 +3,22 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h2>Inscription</h2>
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.password) }}
-    {{ form_row(registrationForm.firstName) }}
-    {{ form_row(registrationForm.lastName) }}
-    {{ form_row(registrationForm.gender) }}
-    {{ form_row(registrationForm.birthdate) }}
-    {{ form_row(registrationForm.address) }}
-    <hr>
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
-    {{ form_end(registrationForm) }}
-    <hr>
-    <div class="social-login">
-        <a href="{{ path('connect_google_start') }}" class="btn btn-primary">S'inscrire avec Google</a>
-        <a href="{{ path('connect_facebook_start') }}" class="btn btn-primary">S'inscrire avec Facebook</a>
+    <h1 class="text-center">Inscription</h1>
+    <div class="login d-flex align-items-center justify-content-evenly gap-5 h-100">
+        {{ form_start(registrationForm, { attr: {'class': 'signup-form w-100 d-flex flex-column align-items-center gap-3 p-0'}} ) }}
+        {{ form_row(registrationForm.email,{ attr: {'class': 'form-control w-100'}}) }}
+        {{ form_row(registrationForm.password,{ attr: {'class': 'form-control w-100'}}) }}
+        {{ form_row(registrationForm.firstName,{ attr: {'class': 'form-control w-100'}}) }}
+        {{ form_row(registrationForm.lastName,{ attr: {'class': 'form-control w-100'}}) }}
+        {{ form_row(registrationForm.gender,{ attr: {'class': 'form-control w-100'}}) }}
+        {{ form_row(registrationForm.birthdate,{ attr: {'class': 'form-control w-100'}}) }}
+        {{ form_row(registrationForm.address,{ attr: {'class': 'form-control w-100'}}) }}
+        <button type="submit" class="btn btn-login rounded-pill w-100  btn-blue"><p>S'inscrire</p></button>
+        {{ form_end(registrationForm) }}
+        <div class="login-other-auth d-flex flex-column align-items-center gap-5 w-100">
+            <a href="{{ path('connect_google_start') }}" class="btn btn-login btn-darkblue d-flex align-items-center justify-content-center rounded-pill w-100"><p>S'inscrire avec Google</p></a>
+            <a href="{{ path('connect_facebook_start') }}" class="btn btn-login btn-darkblue d-flex align-items-center justify-content-center rounded-pill w-100"><p>S'inscrire avec Facebook</p></a>
+            <p>Déjà un compte ? <a href="{{ path('app_login') }}"><span class="p-green">Se connecter</span></a></p>
+        </div>
     </div>
-    <p>Déjà un compte ? <a href="{{ path('app_login') }}">Se connecter</a></p>
 {% endblock %}

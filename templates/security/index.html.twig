@@ -3,7 +3,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <h2 class="text-center">Connexion</h2>
+    <h1 class="text-center">Connexion</h1>
     <div class="login d-flex align-items-center justify-content-evenly gap-5 h-100">
         <form method="post" class="login-form d-flex flex-column align-items-center gap-5 p-0">
             <div class="w-100 d-flex flex-column gap-2">
@@ -20,7 +20,7 @@
                 <div class="alert alert-danger w-100">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
         </form>
-        <div class="login-other-auth d-flex flex-column align-items-center gap-5 ">
+        <div class="login-other-auth d-flex flex-column align-items-center gap-5">
             <a href="{{ path('connect_google_start') }}" class="btn btn-login btn-darkblue d-flex align-items-center justify-content-center rounded-pill w-100"><p class="text-white">Se connecter avec Google</p></a>
             <a href="{{ path('connect_google_start') }}" class="btn btn-login btn-darkblue d-flex align-items-center justify-content-center rounded-pill w-100"><p class="text-white">Se connecter avec Facebook</p></a>
         </div>

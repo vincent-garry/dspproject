@@ -1,0 +1,14 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.signup-form {
+  div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    label {
+      font-size: $h3-font-size;
+      font-weight: 500;
+    }
+  }
+}

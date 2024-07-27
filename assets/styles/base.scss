@@ -11,7 +11,8 @@ main {
 p,
 h1,
 h2,
-h3 {
+h3,
+label {
   font-family: "Noto Sans", sans-serif;
   text-shadow: 0 2px 4px rgba(#000, 0.175);
   padding: 0 !important;
@@ -53,6 +54,9 @@ a {
 .btn {
   & {
     transition: transform 1s ease-in-out;
+    p {
+      color: #fff;
+    }
     &:hover {
       opacity: 0.9;
       transform: scale(1.05);
@@ -61,6 +65,8 @@ a {
 }
 
 /* Input */
+select,
+button,
 input {
   border-radius: 25px !important;
 }
