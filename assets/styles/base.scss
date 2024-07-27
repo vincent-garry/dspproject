@@ -1,0 +1,111 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/* Styles généraux */
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+main {
+  min-height: 100vh;
+}
+
+p,
+h1,
+h2 {
+  font-family: "Noto Sans", sans-serif;
+  text-shadow: 0 2px 4px rgba(#000, 0.175);
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.hover-25:hover {
+  opacity: 25%;
+}
+a {
+  font-family: "Noto Sans", sans-serif;
+}
+.p-green {
+  color: $lightgreen-color;
+  font-weight: 600;
+}
+
+/* Boutons */
+.btn-primary {
+  background-color: $lightgreen-color;
+  border-color: $lightgreen-color;
+}
+
+.btn-secondary {
+  background-color: $blue-color;
+  border-color: $blue-color;
+}
+
+.btn-terciary {
+  background-color: $blue-color;
+  border-color: $blue-color;
+}
+
+.btn {
+  & {
+    transition: transform 1s ease-in-out;
+    &:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* Formulaires */
+form {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+/* Page de loterie */
+#code {
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.5em;
+}
+
+/* Page de profil */
+.profile-info {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+#myPieChart {
+  width: 600px !important; /* Largeur souhaitée */
+  height: 600px !important; /* Hauteur souhaitée */
+}
+
+#genderBarChart {
+  width: 600px !important; /* Largeur souhaitée */
+  height: 400px !important; /* Hauteur souhaitée */
+}
+
+.edit-icon {
+  cursor: pointer;
+  margin-left: 10px;
+}
+#edit-form {
+  display: none;
+}
+
+// fancy shit
+
+.zoom-1-1 {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+}

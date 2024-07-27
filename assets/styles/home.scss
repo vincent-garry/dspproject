@@ -1,0 +1,66 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/* Page d'accueil */
+
+// .prize-grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+//   gap: 1rem;
+// }
+.card-home {
+  max-width: 300px;
+}
+.card-rank {
+  height: 50px;
+  width: 50px;
+  opacity: 0.8;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  transform: rotate(-30deg);
+}
+.card-rank-1 {
+  background-color: $rank-1-color;
+}
+.card-rank-2 {
+  background-color: $rank-2-color;
+}
+.card-rank-3 {
+  background-color: $rank-3-color;
+}
+.prize-item {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+}
+
+.prize-item img {
+  max-width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.btn-loterie {
+  background-color: $pink-color !important;
+  border-color: $pink-color !important;
+  width: 300px;
+  height: 80px;
+}
+
+@media (max-width: 1080px) {
+  main {
+    .btn-loterie {
+      width: 190px;
+      height: 50px;
+      p {
+        font-size: 20px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  main {
+  }
+}

@@ -1,0 +1,56 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+footer {
+  bottom: 0;
+  flex-shrink: 0;
+  .footer-div {
+    background: linear-gradient(0.3turn, #222, #555);
+  }
+  .copyright {
+    background: linear-gradient(0.3turn, #222, #555) !important;
+  }
+}
+.footer-logo {
+  height: 300px;
+}
+.container-fluid {
+  & {
+    padding: 0px !important;
+  }
+}
+.footer-section-div-link {
+  width: 100%;
+}
+
+@media (max-width: 1080px) or (max-device-width: 1080px) {
+  footer {
+    .footer-logo {
+      height: 100px;
+    }
+  }
+}
+
+@media (max-width: 800px) or (max-device-width: 800px) {
+  footer {
+    background: linear-gradient(0.3turn, #222, #555);
+
+    p {
+      font-size: 12px !important;
+    }
+  }
+}
+
+@media (max-width: 650px) or (max-device-width: 650px) {
+  footer {
+    .footer-logo {
+      width: 100%;
+    }
+    .footer-div {
+      flex-direction: column;
+      p {
+        height: 50px;
+        align-content: center;
+      }
+    }
+  }
+}

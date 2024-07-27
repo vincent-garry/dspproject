@@ -1,5 +1,5 @@
  <nav class="navbar navbar-expand-lg navbar-dark navbar-main p-0">
-    <div class="d-flex align-items-center justify-content-between w-100 m-0 p-0">
+    <div class="d-flex navbar-menu align-items-center justify-content-between h-100 w-100 m-0 p-0">
         {# Logo #}
         <a class="navbar-brand" href="{{ path('app_home') }}">
             <img src="{{ asset('images/Logo.svg') }}" alt="Logo du site Thé Tip Top" class="navbar-logo">
@@ -7,35 +7,35 @@
 
         {# Boutons de connexion et d'inscription #}
         {% if app.user %}
-        <div class=" d-flex gap-4 pr-4 align-items-center justify-content-center">
-            <a href="{{ path('app_profile') }}" class="d-flex flex-column align-items-center gap-1">
+        <div class=" d-flex navbar-option gap-4 pr-4 align-items-center justify-content-center pr-4">
+            <a href="{{ path('app_profile') }}" class="d-flex flex-column align-items-center gap-1 hover-25">
                 <div class = "bg-white rounded-circle navbar-avatar-div">
                     <img src="{{ asset('images/Avatar.svg') }}" alt="Avatar de l'utilisateur" class="navbar-avatar-img rounded-circle">
                 </div>
-                <p class="fw-semibold text-white">Utilisateur</p>
+                <p class="fw-semibold text-white">{{ app.user.firstName }}</p>
             </a>
             <a href="{{ path('app_logout') }}" class="d-flex flex-column align-items-center justify-content-center">
-                <img src="{{ asset('images/icon-logout.svg') }}" alt="Logout" class="navbar-icon-logout">
+                <img src="{{ asset('images/icon-logout.svg') }}" alt="Logout" class="navbar-icon-logout hover-25">
             </a>
         </div>
         {% else %}
-            <div class="d-flex align-items-center">
-                <a href="{{ path('app_login') }}" class="btn btn-success me-2 rounded-pill navbar-btn text-center" style="background-color: #8bc34a;">
-                    <p class="d-flex align-items-center h-100 justify-content-center">Connexion</p>
-                </a>
-                <a href="{{ path('app_register') }}" class="btn btn-info rounded-pill navbar-btn text-center" style="background-color: #5D92AD;">
-                    <p class="d-flex align-items-center h-100 justify-content-center">Inscription</p>
-                </a>
-            </div>
+        <div class="d-flex navbar-option align-items-center pr-4">
+            <a href="{{ path('app_login') }}" class="btn btn-success me-2 rounded-pill navbar-btn text-center" style="background-color: #8bc34a;">
+                <p class="d-flex align-items-center h-100 justify-content-center">Connexion</p>
+            </a>
+            <a href="{{ path('app_register') }}" class="btn btn-info rounded-pill navbar-btn text-center" style="background-color: #5D92AD;">
+                <p class="d-flex align-items-center h-100 justify-content-center">Inscription</p>
+            </a>
+        </div>
         {% endif %}
 
     </div>
 </nav>
 
-{% if app.user %}
+{# {% if app.user %} #}
     {# Sous-menu vert #}
     <div class="submenu">
-        <ul class="nav justify-content-evenly h-100">
+        <ul class="nav align-items-center justify-content-evenly h-100">
             <li class="nav-item d-flex align-items-center">
                 <a class="nav-link fs-3 fw-semibold text-black link-primary" href="{{ path('app_home') }}"><p>Acceuil</p></a>
             </li>
@@ -45,11 +45,11 @@
             <li class="nav-item d-flex align-items-center">
                 <a class="nav-link fs-3 fw-semibold text-black link-primary" href="{{ path('app_my_prizes') }}"><p>Mes gains</p></a>
             </li>
-            {% if is_granted('ROLE_ADMIN') %}
+            {# {% if is_granted('ROLE_ADMIN') %} #}
                 <li class="nav-item d-flex align-items-center">
                     <a class="nav-link fs-3 fw-semibold text-black link-primary" href="/admin"><p>Centre d'administration</p></a>
                 </li>
-            {% endif %}
+            {# {% endif %} #}
         </ul>
     </div>
-{% endif %}
+{# {% endif %} #}

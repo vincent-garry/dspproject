@@ -1,0 +1,110 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+/* ICON */
+
+.navbar-icon-logout {
+  width: 70px;
+  height: 70px;
+}
+
+.navbar-main {
+  height: 100px;
+  // background: linear-gradient(
+  //     217deg,
+  //     rgba(0, 61, 36, 0.8),
+  //     rgba(4, 0, 5, 0) 70.71%
+  //   ),
+  //   linear-gradient(127deg, rgba(4, 24, 4, 0.8), rgba(0, 255, 0, 0) 70.71%),
+  //   linear-gradient(336deg, rgba(0, 0, 89, 0.8), rgba(86, 86, 89, 0) 70.71%);
+  background: linear-gradient(0.3turn, #222, #555);
+}
+.navbar-avatar-div {
+  width: 50px;
+  height: 50px;
+}
+.navbar-avatar-img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-avatar:hover {
+  opacity: 25%;
+}
+.navbar-logo {
+  height: 100px;
+  // height: 100px;
+}
+
+.submenu {
+  min-height: 50px;
+  background-color: $green-color;
+}
+
+.navbar-btn {
+  height: 60px;
+  width: 150px;
+  font-size: 16px !important;
+}
+
+nav {
+  p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1080px) or (max-device-width: 1080px) {
+  nav .btn {
+    height: 40px;
+    width: 120px;
+    p {
+      font-size: 14px;
+    }
+  }
+  .submenu {
+    min-height: 50px;
+
+    p {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 590px) or (max-device-width: 590px) {
+  .navbar {
+    height: 250px;
+
+    .navbar-menu {
+      flex-direction: column;
+
+      .navbar-brand {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        .navbar-logo {
+          width: 50%;
+          object-fit: cover;
+          height: 150px;
+        }
+      }
+      .navbar-option {
+        margin: 0px;
+        padding: 0px !important;
+        width: 100%;
+        height: 100px;
+        justify-content: space-evenly;
+        .btn {
+          height: 50px;
+          width: 150px;
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  // .submenu {
+  //   p {
+  //     font-size: 14px;
+  //   }
+}
