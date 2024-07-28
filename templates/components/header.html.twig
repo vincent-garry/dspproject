@@ -12,7 +12,7 @@
                 <div class = "bg-white rounded-circle navbar-avatar-div">
                     <img src="{{ asset('images/Avatar.svg') }}" alt="Avatar de l'utilisateur" class="navbar-avatar-img rounded-circle">
                 </div>
-                <p class="fw-semibold text-white">{{ app.user.firstName }}</p>
+                <p class="fw-semibold text-white">{{ app.user.firstName }} {{ app.user.lastName }}</p>
             </a>
             <a href="{{ path('app_logout') }}" class="d-flex flex-column align-items-center justify-content-center">
                 <img src="{{ asset('images/icon-logout.svg') }}" alt="Logout" class="navbar-icon-logout hover-25">

@@ -8,6 +8,8 @@
 {% endblock %}
 
 {% block body %}
+    <h1 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Mon profil</h1>
+
     <div class="profile-info">
         <div class="row">
             <div class="col-md-3 text-center">
@@ -38,22 +40,36 @@
     <button type="submit" class="btn btn-success mt-3">Enregistrer les modifications</button>
     {{ form_end(form) }}
 
-    <h3 class="mb-3 mt-5">Mes gains</h3>
-    <div class="prize-grid">
-        <div class="row">
-            {% for code in app.user.codes|slice(0, 6) %}
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="{{ asset('images/' ~ code.prize ~ '.jpg') }}" class="card-img-top" alt="{{ code.prize }}">
+    <h2 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Mes gains</h2>
+    {% if app.user.codes is empty %}
+        <p>Vous n'avez pas encore de gains.</p>
+    {% else %}
+        <div class="d-flex flex-column align-items-center justify-content-center gap-5 prize-grid">
+            <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
+                {% for prize in app.user.codes %}
+                    <div class="card card-prize card-bg-{{ prize.delivry  ? '1' : '0  zoom-1-1' }}">
+                        <div class="card p-2 border-0">
+                            <img src="{{ asset('images/' ~ prize.prize ~ '.jpg' ) }}" class="card-img-top" alt="{{ prize.prize }}">
+                            {# {% if prize.rank %}
+                                <div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
+                            {% endif %} #}
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ code.prize }}</h5>
-                            <p class="card-text">{{ code.code }}</p>
-                            <p class="card-text">{% if code.delivry == true %}Produit récupéré{% else %}Produit non récupéré{% endif %}</p>
+                            <h5 class="card-title">{{ prize.prize }}</h5>
+                            <p class="card-text">Code : {{ prize.code }}</p>
+                            <p class="card-text p-delivered">
+                                {% if prize.delivry == true %}
+                                    Produit récupéré
+                                {% else %}
+                                    Produit non récupéré
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
+    {% endif %}
     </div>
 {% endblock %}
 
