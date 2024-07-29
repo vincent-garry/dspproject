@@ -6,6 +6,27 @@ main {
   text-align: center;
   min-height: 100vh;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+.container-fluid {
+  & {
+    padding: 0px !important;
+  }
+}
+.f-box {
+  & {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80% !important;
+  }
+}
+.container {
+  & {
+    width: 80% !important;
+  }
+}
 
 p,
 h1,
@@ -13,7 +34,7 @@ h2,
 h3,
 label {
   font-family: "Noto Sans", sans-serif;
-  text-shadow: 0 2px 4px rgba(#000, 0.175);
+  text-shadow: 0 2px 4px rgba($dark-color, 0.175);
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -28,6 +49,12 @@ a {
   font-weight: 600;
 }
 
+.hover-shadow-blue {
+  box-shadow: 0 0.5rem 1rem rgba($dark-color, 0.2) !important;
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba($blue-color, 0.2) !important;
+  }
+}
 /* Boutons */
 .btn-lightgreen {
   background-color: $lightgreen-color !important;
@@ -54,7 +81,7 @@ a {
   & {
     transition: transform 1s ease-in-out;
     p {
-      color: #fff;
+      color: $white;
     }
     &:hover {
       opacity: 0.9;
@@ -110,7 +137,7 @@ form {
 /* Page de profil */
 .profile-info {
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba($dark-color, 0.1);
   padding: 2rem;
   margin-bottom: 2rem;
 }
@@ -122,16 +149,6 @@ form {
   object-fit: cover;
 }
 
-#myPieChart {
-  width: 600px !important; /* Largeur souhaitée */
-  height: 600px !important; /* Hauteur souhaitée */
-}
-
-#genderBarChart {
-  width: 600px !important; /* Largeur souhaitée */
-  height: 400px !important; /* Hauteur souhaitée */
-}
-
 .edit-icon {
   cursor: pointer;
   margin-left: 10px;
@@ -141,7 +158,25 @@ form {
 }
 
 // fancy shit
+.zoom-1-05 {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
 
+.zoom-1-03 {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+.zoom-1-01 {
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.01);
+  }
+}
 .zoom-1-1 {
   transition: transform 0.2s ease-in-out;
   &:hover {

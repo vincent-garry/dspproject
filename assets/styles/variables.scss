@@ -1,19 +1,21 @@
 /* BASE COLOR */
-$pink-color: #cd58ba;
-$lightgreen-color: #8bc34a;
-$green-color: #59ad52;
-$dark-color: #333;
-$darkblue-color: #242a42;
-$blue-color: #17a2b8;
+
+$pink-color: #cd58ba; /* RGB(205, 88, 186) */
+$lightgreen-color: #8bc34a; /* RGB(139, 195, 74) */
+$green-color: #59ad52; /* RGB(89, 173, 82) */
+$dark-color: #333; /* RGB(51, 51, 51) */
+$darkblue-color: #242a42; /* RGB(36, 42, 66) */
+$blue-color: #17a2b8; /* RGB(23, 162, 184) */
 
 /* placeholder */
+
 $placeholder: #d9d9d9;
 
 /* card */
 
-$card-light: #fff;
-$card-delivered: #dedede;
+$card-light: #fff; /* RGB(255, 255, 255) */
+$card-delivered: #dedede; /* RGB(222, 222, 222) */
 
-$rank-1-color: #ffff00;
+$rank-1-color: #ffff00; /* RGB(255, 255, 0) */
 $rank-2-color: grey;
-$rank-3-color: rgb(189, 145, 83);
+$rank-3-color: #bd9153; /* RGB(189, 145, 83) */

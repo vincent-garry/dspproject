@@ -1,24 +1,83 @@
-.stat-info-row {
-  background-color: rgba(72, 86, 190, 0.5) !important;
-  border-radius: 15px !important;
-  width: 100% !important;
+.dashboard {
+  width: 100%;
 
-  .p-stat-title,
-  .p-stat-value {
-    background-color: rgba(255, 255, 255, 0.5) !important;
-    border-radius: 15px !important;
+  .card-dashboard {
+    width: 45%;
+    margin: 10px;
+    padding: 10px;
+    .stat-info-row {
+      background-color: rgba($blue-color, 0.3) !important;
+      border-radius: 15px !important;
+      width: 100% !important;
+
+      .p-stat-title,
+      .p-stat-value {
+        background-color: rgba($white, 0.5) !important;
+        border-radius: 15px !important;
+      }
+      .p-stat-value {
+        min-width: 50px;
+      }
+    }
   }
-  .p-stat-value {
-    min-width: 50px;
+  .card-dashboard-mail {
+    width: 93.9%;
+    margin: 10px;
   }
 }
 
-// #myPieChart {
-//   width:  !important; /* Largeur souhaitée */
-//   height: 600px !important; /* Hauteur souhaitée */
-// }
-
+#myPieChart,
 #genderBarChart {
-  width: 600px !important; /* Largeur souhaitée */
-  height: 400px !important; /* Hauteur souhaitée */
+  width: 90% !important;
+  height: 700px !important;
+}
+
+@media (max-width: 1300px) or (max-device-width: 1300px) {
+  #myPieChart,
+  #genderBarChart {
+    height: 650px !important;
+  }
+}
+
+@media (max-width: 1200px) or (max-device-width: 1200px) {
+  #myPieChart,
+  #genderBarChart {
+    width: 85% !important;
+
+    height: 600px !important;
+  }
+}
+
+@media (max-width: 1080px) or (max-device-width: 1080px) {
+  #myPieChart,
+  #genderBarChart {
+    height: 500px !important;
+  }
+}
+@media (max-width: 900px) or (max-device-width: 900px) {
+  .dashboard {
+    padding: 2%;
+
+    flex-direction: column;
+    .card-dashboard,
+    .card-dashboard-mail {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    #myPieChart,
+    #genderBarChart {
+      width: 80% !important;
+    }
+  }
+}
+@media (max-width: 450px) or (max-device-width: 450px) {
+  .card-dashboard,
+  .card-dashboard-mail,
+  #genderBarChart,
+  #myPieChart {
+    p {
+      font-size: 12px;
+    }
+  }
 }
