@@ -10,9 +10,9 @@
 {% block body %}
     <h1 class="mb-4 fs-1 fw-semibold pt-5 pb-5">Mon profil</h1>
     <div class="box">
-        <div class="f-box shadow card-profile align-items-start justify-content-evenly gap-3">
+        <div class="f-box shadow card-profile align-items-start justify-content-evenly gap-3 hover-shadow-blue">
             <div class = "bg-white rounded-circle avatar-box w-25 h-100 gap-3 text-center">
-                <img src="{{ asset('images/Avatar.svg') }}" alt="Avatar de l'utilisateur" class="profile-avatar-img rounded-circle">
+                <img src="{{ asset('images/Avatar.svg') }}" alt="Avatar de l'utilisateur" class="profile-avatar-img rounded-circle zoom-1-03">
                 <h3 class="fs-3 fw-semibold">{{ app.user.firstName }} {{ app.user.lastName }}</h2>
             </div>
             <div id="profile-card"class="f-box-col w-50 text-center h-100 gap-3">
