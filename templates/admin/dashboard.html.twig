@@ -8,17 +8,17 @@
             <div class="card card-dashboard text-center mt-3 hover-shadow-blue">
                 <h2 class="fs-2 mt-3 mb-3">Statistiques</h2>
                 <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
-                    <div class="stat-info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-stat-title p-2">Nombre total de ticket :</p>
-                        <p class="p-stat-value p-2">{{ stats.totalTickets }}</p>
+                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                        <p class="p-info-title p-2">Nombre total de ticket :</p>
+                        <p class="p-info-value p-2">{{ stats.totalTickets }}</p>
                     </div>
-                    <div class="stat-info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-stat-title p-2">Tickets utilisés :</p>
-                        <p class="p-stat-value p-2">{{ stats.usedTickets }}</p>
+                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                        <p class="p-info-title p-2">Tickets utilisés :</p>
+                        <p class="p-info-value p-2">{{ stats.usedTickets }}</p>
                     </div>
-                    <div class="stat-info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-stat-title p-2">Nombre total de prix récupérés :</p>
-                        <p class="p-stat-value p-2">{{ stats.totalPrizes }}</p>
+                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                        <p class="p-info-title p-2">Nombre total de prix récupérés :</p>
+                        <p class="p-info-value p-2">{{ stats.totalPrizes }}</p>
                     </div>
                     <!-- Élement canvas pour le graphique -->
                     <canvas id="myPieChart" class="d-flex align-items-center w-100 pt-2"></canvas>
@@ -28,9 +28,9 @@
                 <h2 class="fs-2 mt-3 mb-3">Genre statistiques</h2>
                 <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
                     {% for gender, count in stats.genderStats %}
-                        <div class="stat-info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                            <p class="p-stat-title p-2">{{ gender }} :</p>
-                            <p class="p-stat-value p-2">{{ count }}</p>
+                        <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                            <p class="p-info-title p-2">{{ gender }} :</p>
+                            <p class="p-info-value p-2">{{ count }}</p>
                         </div>
                     {% endfor %}
                     <canvas id="genderBarChart" class="d-flex align-items-center w-100 pt-2"></canvas>

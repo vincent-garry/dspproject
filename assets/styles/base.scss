@@ -5,6 +5,7 @@ body {
 main {
   text-align: center;
   min-height: 100vh;
+  width: 100%;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -14,17 +15,32 @@ main {
     padding: 0px !important;
   }
 }
-.f-box {
-  & {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80% !important;
-  }
+.box {
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-75 {
+  width: 75% !important;
+}
+.f-box,
+.f-box-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95% !important;
+  border-radius: 0.25rem !important;
+}
+.f-box-col {
+  flex-direction: column;
 }
 .container {
   & {
-    width: 80% !important;
+    width: 90% !important;
   }
 }
 
@@ -120,41 +136,26 @@ input {
   background-color: $rank-3-color;
 }
 
+.info-row {
+  background-color: rgba($blue-color, 0.3) !important;
+  border-radius: 15px !important;
+  width: 100% !important;
+
+  .p-info-title,
+  .p-info-value {
+    background-color: rgba($white, 0.5) !important;
+    border-radius: 15px !important;
+  }
+  .p-info-value {
+    min-width: 50px;
+  }
+}
+
 /* Formulaires */
 form {
   border-radius: 8px;
   padding: 2rem;
   margin-top: 2rem;
-}
-
-/* Page de loterie */
-#code {
-  font-size: 1.5rem;
-  text-align: center;
-  letter-spacing: 0.5em;
-}
-
-/* Page de profil */
-.profile-info {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba($dark-color, 0.1);
-  padding: 2rem;
-  margin-bottom: 2rem;
-}
-
-.profile-avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.edit-icon {
-  cursor: pointer;
-  margin-left: 10px;
-}
-#edit-form {
-  display: none;
 }
 
 // fancy shit

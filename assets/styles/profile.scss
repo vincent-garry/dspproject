@@ -1,0 +1,82 @@
+.card-profile {
+  border: 1px solid $dark-color;
+  border-radius: 1rem !important;
+  padding: 3% 2%;
+  .profile-form {
+    div {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      div {
+        width: 100%;
+      }
+      label {
+        font-size: $h3-font-size;
+        font-weight: 500;
+      }
+    }
+  }
+  .info-row {
+    width: 75% !important;
+  }
+}
+.profile-avatar-img {
+  height: 100%;
+}
+
+#btn-save,
+#edit-form {
+  display: none;
+}
+
+.profile-button-group {
+  width: 40% !important;
+}
+
+@media (max-width: 950px) or (max-device-width: 950px) {
+  .card-profile {
+    h3 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 780px) or (max-device-width: 780px) {
+  .card-profile {
+    h3 {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 750px) or (max-device-width: 750px) {
+  .card-profile {
+    flex-direction: column;
+    .avatar-box,
+    #profile-card,
+    #profile-form {
+      width: 100% !important;
+    }
+    .profile-form div {
+      width: 75%;
+    }
+    .avatar-box {
+      height: 200px !important;
+    }
+    .profile-avatar-img {
+      height: 75% !important;
+    }
+    #profile-button-group {
+      align-items: center;
+      width: 75% !important;
+      flex-direction: column-reverse;
+    }
+    #profile-form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

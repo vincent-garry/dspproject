@@ -5,20 +5,6 @@
     width: 45%;
     margin: 10px;
     padding: 10px;
-    .stat-info-row {
-      background-color: rgba($blue-color, 0.3) !important;
-      border-radius: 15px !important;
-      width: 100% !important;
-
-      .p-stat-title,
-      .p-stat-value {
-        background-color: rgba($white, 0.5) !important;
-        border-radius: 15px !important;
-      }
-      .p-stat-value {
-        min-width: 50px;
-      }
-    }
   }
   .card-dashboard-mail {
     width: 93.9%;
@@ -73,9 +59,7 @@
 }
 @media (max-width: 450px) or (max-device-width: 450px) {
   .card-dashboard,
-  .card-dashboard-mail,
-  #genderBarChart,
-  #myPieChart {
+  .card-dashboard-mail {
     p {
       font-size: 12px;
     }

@@ -9,38 +9,58 @@
 
 {% block body %}
     <h1 class="mb-4 fs-1 fw-semibold pt-5 pb-5">Mon profil</h1>
-
-    <div class="profile-info">
-        <div class="row">
-            <div class="col-md-3 text-center">
-                <img src="{{ asset('images/default-avatar.png') }}" alt="Avatar" class="profile-avatar mb-3">
+    <div class="box">
+        <div class="f-box shadow card-profile align-items-start justify-content-evenly gap-3">
+            <div class = "bg-white rounded-circle avatar-box w-25 h-100 gap-3 text-center">
+                <img src="{{ asset('images/Avatar.svg') }}" alt="Avatar de l'utilisateur" class="profile-avatar-img rounded-circle">
+                <h3 class="fs-3 fw-semibold">{{ app.user.firstName }} {{ app.user.lastName }}</h2>
             </div>
-            <div class="col-md-9">
-                <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
-                <p>Date de naissance : {{ app.user.birthdate ?: 'Non renseignée' }}</p>
-                <p>Genre : {% if app.user.gender == "male" %} Homme {% elseif app.user.gender == "female" %} Femme {% elseif app.user.gender == "other" %} Autre {% else %} Ne souhaite pas répondre {% endif %}</p>
-                <p>Adresse : {{ app.user.address }}</p>
-                <p>Nombre de gains : {{ app.user.codes|length }}</p>
-
-                <button id="edit-button" class="btn btn-primary">
-                    <i class="fas fa-edit"></i> Modifier
-                </button>
+            <div id="profile-card"class="f-box-col w-50 text-center h-100 gap-3">
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Date de naissance :</p>
+                    <p class="p-info-value p-2">{{ app.user.birthdate ?: 'Non renseignée' }}</p>
+                </div>
+                       <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Genre :</p>
+                    <p class="p-info-value p-2">{% if app.user.gender == "male" %} Homme {% elseif app.user.gender == "female" %} Femme {% elseif app.user.gender == "other" %} Autre {% else %} Ne souhaite pas répondre {% endif %}</p>
+                </div>
+                       <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Adresse :</p>
+                    <p class="p-info-value p-2">{{ app.user.address }}</p>
+                </div>
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Nombre de gains :</p>
+                    <p class="p-info-value p-2">{{ app.user.codes|length }}</p>
+                </div>
             </div>
+            {{ form_start(form, {'attr': 
+                {
+                    'id':'profile-form',
+                    'class': 'profile-form f-box align-items-center text-start gap-3 p-0 m-0 w-25'
+                }
+            })}}
+                <div id= 'edit-form'>
+                    {{ form_row(form.firstName, { attr: {'class': 'form-control w-100'}}) }}
+                    {{ form_row(form.lastName, { attr: {'class': 'form-control w-100'}}) }}
+                    {{ form_row(form.birthdate, { attr: {'class': 'form-control w-100'}}) }}
+                    {{ form_row(form.gender, { attr: {'class': 'form-control w-100'}}) }}
+                    {{ form_row(form.address, { attr: {'class': 'form-control w-100'}}) }}
+                </div>
+                <div id="profile-button-group" class="f-box-col align-items-start gap-3 w-100">
+                    <button type="button" id="edit-button" class="btn btn-blue w-100">
+                        <p><i class="fas fa-edit"></i> Modifier</p>
+                    </button>
+                    <button type="submit" id="btn-save" class="btn btn-lightgreen w-100">
+                        <p><i class="fas fa-save"></i> Enregistrer</p>
+                    </button>
+                </div>
+            {{ form_end(form) }}
         </div>
-    </div>
 
-    {{ form_start(form, {'attr': {'id': 'edit-form'}}) }}
-    <div class="mt-3">
-        {{ form_row(form.firstName) }}
-        {{ form_row(form.lastName) }}
-        {{ form_row(form.birthdate) }}
-        {{ form_row(form.gender) }}
-        {{ form_row(form.address) }}
     </div>
-    <button type="submit" class="btn btn-success mt-3">Enregistrer les modifications</button>
-    {{ form_end(form) }}
 
     <h2 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Mes gains</h2>
+
     {% if app.user.codes is empty %}
         <p>Vous n'avez pas encore de gains.</p>
     {% else %}
@@ -86,9 +106,21 @@
                 changeYear: true,
                 yearRange: "-100:+0"
             });
-
             $("#edit-button").click(function() {
-                $("#edit-form").toggle();
+                //console.log($(this).class());
+                //console.log();
+
+                $("#edit-form, #profile-card, #btn-save").toggle(); 
+
+                $(this).toggleClass('btn-blue btn-dark'); 
+                $("#profile-button-group").toggleClass('w-100 profile-button-group');
+                $("#profile-form").toggleClass('w-25 w-75'); 
+
+                if ($(this).hasClass("btn-blue")){
+                    $(this).html('<p><i class="fas fa-edit"></i> Modifier</p>') 
+                }else{
+                    $(this).html('<p><i class="bi bi-x"></i> Annuler</p>') 
+                }
             });
         });
     </script>
