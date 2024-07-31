@@ -29,7 +29,18 @@
                 <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
                     {% for gender, count in stats.genderStats %}
                         <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                            <p class="p-info-title p-2">{{ gender }} :</p>
+                            <p class="p-info-title p-2">
+                                {% if gender == 'male' %}
+                                    Homme
+                                {% elseif gender == 'female' %}
+                                    Femme
+                                {% elseif gender == 'other' %}
+                                    Autre
+                                {% elseif gender == 'prefer_not_to_say' %}
+                                    Préfère ne pas répondre
+                                {% else %}
+                                    Genre inconnu
+                                {% endif %} :</p>
                             <p class="p-info-value p-2">{{ count }}</p>
                         </div>
                     {% endfor %}
