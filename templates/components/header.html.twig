@@ -45,11 +45,11 @@
             <li class="nav-item d-flex align-items-center">
                 <a class="nav-link fs-3 fw-semibold text-black link-primary" href="{{ path('app_my_prizes') }}"><p>Mes gains</p></a>
             </li>
-            {# {% if is_granted('ROLE_ADMIN') %} #}
+            {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item d-flex align-items-center">
                     <a class="nav-link fs-3 fw-semibold text-black link-primary" href="/admin"><p>Centre d'administration</p></a>
                 </li>
-            {# {% endif %} #}
+            {% endif %}
         </ul>
     </div>
 {% endif %}
