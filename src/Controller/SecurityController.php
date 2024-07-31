@@ -49,4 +49,35 @@ class SecurityController extends AbstractController
         // Elle est interceptée par le GoogleAuthenticator
         throw new \LogicException('This method can be blank - it will be intercepted by the Google authenticator');
     }
+
+    // FOOTER
+    #[Route('/mentions-legales', name: 'app_mention_legale')]
+    public function mentionsLegales(): Response
+    {
+        return $this->render('security/mentions-legales.html.twig');
+    }
+
+    #[Route('/reglement', name: 'app_reglement')]
+    public function reglement(): Response
+    {
+        return $this->render('security/reglement.html.twig');
+    }
+
+    #[Route('/politique-confidentialité', name: 'app_confidentialite_application')]
+    public function confidentialite(): Response
+    {
+        return $this->render('security/confidentialite-application.html.twig');
+    }
+
+    #[Route('/politique-conservation', name: 'app_conservation')]
+    public function conservation(): Response
+    {
+        return $this->render('security/conservation.html.twig');
+    }
+
+    #[Route('/conditions-générales', name: 'app_cgu')]
+    public function cgu(): Response
+    {
+        return $this->render('security/cgu.html.twig');
+    }
 }

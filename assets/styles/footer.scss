@@ -1,21 +1,61 @@
 footer {
   bottom: 0;
   flex-shrink: 0;
+
   .footer-div {
     background: linear-gradient(0.3turn, #222, #555);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
   }
+
   .copyright {
     background: linear-gradient(0.3turn, #222, #555) !important;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .footer-logo {
+    height: 300px;
+    max-width: 100%;
+  }
+
+  .footer-section-div-link {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-column {
+    padding-top: 20px;
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 20px;
+  }
+
+  .footer-link-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-legal-link {
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  .hover-25:hover {
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
   }
 }
-.footer-logo {
-  height: 300px;
-}
-.footer-section-div-link {
-  width: 100%;
-}
 
-@media (max-width: 1080px) or (max-device-width: 1080px) {
+@media (max-width: 1080px) {
   footer {
     .footer-logo {
       height: 100px;
@@ -23,26 +63,77 @@ footer {
   }
 }
 
-@media (max-width: 800px) or (max-device-width: 800px) {
+@media (max-width: 800px) {
   footer {
     background: linear-gradient(0.3turn, #222, #555);
 
     p {
       font-size: 12px !important;
     }
+
+    .footer-div {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-column {
+      width: 100%;
+      text-align: center;
+      padding: 0 15px;
+    }
+
+    .footer-section-div-link {
+      flex-direction: column;
+      align-items: center;
+
+      a {
+        margin: 5px 0;
+      }
+    }
   }
 }
 
-@media (max-width: 650px) or (max-device-width: 650px) {
+@media (max-width: 650px) {
   footer {
     .footer-logo {
       width: 100%;
+      height: auto;
+      max-width: 150px;
     }
+
     .footer-div {
       flex-direction: column;
+      align-items: center;
+      text-align: center;
+
       p {
-        height: 50px;
-        align-content: center;
+        height: auto;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .footer-link-section {
+        margin-top: 15px;
+      }
+
+      .footer-legal-link {
+        font-size: 12px;
+      }
+    }
+
+    .footer-links {
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .copyright {
+      p {
+        font-size: 12px;
+        margin: 0;
       }
     }
   }

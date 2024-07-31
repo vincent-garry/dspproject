@@ -184,3 +184,18 @@ form {
     transform: scale(1.1);
   }
 }
+
+// Informations légales
+
+.custom-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  text-align: left; /* Aligne le texte à gauche */
+}
+.custom-container p, .custom-container ul {
+  text-align: left; /* Assure que tous les paragraphes et listes sont alignés à gauche */
+}
+.custom-container h1, .custom-container h2 {
+  text-align: left; /* Aligne les titres à gauche */
+}

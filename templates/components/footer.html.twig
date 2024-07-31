@@ -9,19 +9,43 @@
             </a>
             <!-- Logo  -->
 
-            <!-- Section: Links  -->
-            <div class="d-flex footer-link-section align-items-center justify-content-evenly footer-section-div-link">
-                <div class="d-flex footer-link-section-link flex-column align-items-center justify-content-evenly h-100">
-                    <a class="" href="{{ path('app_confidentialite') }}"><p class="hover-25 p-green">Politique de confidentialité.</p></a>
-                    <a class="" href="{{ path('app_suppression') }}"><p class="hover-25 p-green">Politique de conservation des données.</p></a>
-                </div>
-                <div class="d-flex footer-link-section-link flex-column align-items-center justify-content-evenly h-100">
-                    <a class="" href="{{ path('app_confidentialite') }}"><p class="hover-25 p-green">Politique de confidentialité.</p></a>
-                    <a class="" href="{{ path('app_suppression') }}"><p class="hover-25 p-green">Politique de conservation des données.</p></a>
-                </div>
+            <!-- Navigation rapide -->
+            <div class="col-md-3 footer-column">
+                <h5 class="footer-heading p-green">Navigation rapide</h5>
+                <ul class="footer-links">
+                    <li class="p-green"><a href="{{ path("app_home") }}" class="p-green hover-25">Accueil</a></li>
+                    {% if app.user %}
+                    <li class="p-green"><a href="{{ path("app_lottery") }}" class="p-green hover-25">Loterie</a></li>
+                    <li class="p-green"><a href="{{ path("app_my_prizes") }}" class="p-green hover-25">Mes gains</a></li>
+                    <li class="p-green"><a href="{{ path("app_profil") }}" class="p-green hover-25">Profil</a></li>
+                    {% endif %}
+                    <li class="p-green"><a href="{{ path("app_reglement") }}" class="p-green hover-25">Règlement du concours</a></li>
+                </ul>
             </div>
-            <!-- Section: Links  -->
+
+            <!-- Coordonnées -->
+            <div class="col-md-3 footer-column">
+                <h5 class="footer-heading p-green">Contactez-nous</h5>
+                <p class="p-green">
+                    Thé Tip Top<br>
+                    18 rue Léon Frot, 75011 Paris<br>
+                    Tél : 01 23 45 67 89<br>
+                    Email : contact@thetiptop.fr
+                </p>
+            </div>
+            <div class="col-md-3 footer-column">
+                <div class="col-12">
+                    <div class="footer-link-section">
+                        <a href="{{ path('app_cgu') }}" class="p-green hover-25 footer-legal-link">Conditions générales d'utilisation (CGU)</a>
+                        <a href="{{ path('app_mention_legale') }}" class="p-green hover-25 footer-legal-link">Mentions légales</a>
+                        <a href="{{ path('app_confidentialite_application') }}" class="p-green hover-25 footer-legal-link">Politique de confidentialité</a>
+                        <a href="{{ path('app_conservation') }}" class="p-green hover-25 footer-legal-link">Politique de conservation des données</a>
+                    </div>
+                </div>
+                <!-- Section: Links  -->
+            </div>
         </div>
+
     </section>
     <!-- Copyright -->
     <div class="copyright d-flex text-center p-4">
