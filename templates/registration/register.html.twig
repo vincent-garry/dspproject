@@ -14,7 +14,14 @@
             {{ form_row(registrationForm.gender,{ attr: {'class': 'form-control w-100'}}) }}
             {{ form_row(registrationForm.birthdate,{ attr: {'class': 'form-control w-100'}}) }}
             {{ form_row(registrationForm.address,{ attr: {'class': 'form-control w-100'}}) }}
-            <button type="submit" class="btn btn-login rounded-pill w-100 btn-blue"><p>S'inscrire</p></button>
+            <label class="checkbox-container">
+                <input type="checkbox" id="termsCheckbox" required>
+                <span class="checkmark"></span>
+                En créant un compte, vous acceptez les
+                <a href="{{ path('app_mention_legale') }}" target="_blank">Conditions générales</a> et notre
+                <a href="{{ path('app_confidentialite_application') }}" target="_blank">politique de confidentialité</a>
+            </label>
+            <button type="submit" id="inscriptionButton" class="btn btn-login rounded-pill w-100 btn-blue" disabled><p>S'inscrire</p></button>
             {{ form_end(registrationForm) }}
             <div class="login-other-auth d-flex flex-column align-items-center gap-5 w-100">
                 <a href="{{ path('connect_google_start') }}" class="btn btn-login btn-darkblue d-flex align-items-center justify-content-center rounded-pill w-100"><p>S'inscrire avec Google</p></a>
@@ -22,7 +29,7 @@
                 <p>Déjà un compte ? <a href="{{ path('app_login') }}"><span class="p-green">Se connecter</span></a></p>
             </div>
         </div>
-        
+
         {{ parent() }}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -35,7 +42,19 @@
                     changeYear: true,
                     yearRange: "-100:+0"
                 });
+
+                // Gestion de l'état du bouton d'inscription
+                $("#termsCheckbox").change(function() {
+                    $("#inscriptionButton").prop("disabled", !this.checked);
+                });
             });
         </script>
     </div>
+
+    <style>
+        #inscriptionButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
 {% endblock %}
