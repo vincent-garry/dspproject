@@ -47,6 +47,13 @@
                     <canvas id="genderBarChart" class="d-flex align-items-center w-100 pt-2"></canvas>
                 </div>
             </div>
+            {% if winner %}
+                <div class="alert alert-success">
+                    <h4>Gagnant du tirage au sort :</h4>
+                    <p>Nom : {{ winner.name }}</p>
+                    <p>Email : {{ winner.email }}</p>
+                </div>
+            {% endif %}
             <div class="card card-dashboard-mail hover-shadow-blue text-center mt-3 p-3">
                 <a href="{{ path('admin_email_data') }}"><p>Voir les données d'emailing</p></a>
             </div>
