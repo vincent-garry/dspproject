@@ -63,7 +63,7 @@ class AdminController extends AbstractController
     {
         // Récupérer les utilisateurs uniques qui ont utilisé un code
         $users = $entityManager->createQuery(
-            'SELECT DISTINCT u.id, u.firstName, u.lastName, u.email
+            'SELECT DISTINCT u.id, u.firstName, u.lastName, u.email, u.bigwinner
          FROM App\Entity\User u
          JOIN App\Entity\Code c WITH c.user = u
          WHERE c.isUsed = :isUsed'
@@ -74,6 +74,13 @@ class AdminController extends AbstractController
         if (empty($users)) {
             $this->addFlash('warning', 'Aucun utilisateur éligible pour le tirage au sort.');
             return $this->redirectToRoute('admin_dashboard');
+        } else {
+            foreach($users as $user) {
+                if($user['bigwinner'] == true) {
+                    $this->addFlash('danger', 'Le tirage a déjà été effectué, le gagnant est '.$user['firstName'].' '.$user['lastName']);
+                    return $this->redirectToRoute('admin_dashboard');
+                }
+            }
         }
 
         // Sélectionner un gagnant au hasard
@@ -82,14 +89,20 @@ class AdminController extends AbstractController
         // Préparer les informations du gagnant
         $winnerInfo = [
             'name' => $winner['firstName'] . ' ' . $winner['lastName'],
-            'email' => $winner['email']
+            'email' => $winner['email'],
+            'id' => $winner['id'],
         ];
+
+        $user = $userRepository->findOneBy(['id' => $winner['id']]);
+        $user->setBigwinner(true);
+        $entityManager->persist($user);
+        $entityManager->flush();
 
         // Stocker les informations du gagnant en session
         $request->getSession()->set('lottery_winner', $winnerInfo);
 
         // Ajouter un message flash
-        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès.');
+        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès. Le gagnant est '.$user['firstName'].' '.$user['lastName']);
 
         // Rediriger vers le dashboard admin
         return $this->redirectToRoute('admin_dashboard', ['winner' => true]);
