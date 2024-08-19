@@ -56,6 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
+    #[ORM\Column]
+    private ?bool $bigwinner = null;
+
     public function __construct()
     {
         $this->codes = new ArrayCollection();
@@ -221,6 +224,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAddress(string $address): static
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function isBigwinner(): ?bool
+    {
+        return $this->bigwinner;
+    }
+
+    public function setBigwinner(bool $bigwinner): static
+    {
+        $this->bigwinner = $bigwinner;
 
         return $this;
     }
