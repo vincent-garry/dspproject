@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Code;
+use App\Entity\User;
 use App\Repository\CodeRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,8 @@ class AdminController extends AbstractController
         if ($request->query->get('winner')) {
             $winner = $request->getSession()->get('lottery_winner');
             $request->getSession()->remove('lottery_winner'); // Nettoyer la session après utilisation
+        } elseif ($winner = $userRepo->getBigwinner()) {
+            $winner = $this->formatBigWinner($request,$winner);
         }
 
         $stats = [
@@ -48,6 +51,19 @@ class AdminController extends AbstractController
         return $formatted;
     }
 
+    private function formatBigWinner(Request $request,User $bigWinner): array
+    {
+        $winner =  [
+            'name' => $bigWinner->getFirstName() . ' ' . $bigWinner->getLastName(),
+            'email' => $bigWinner->getEmail(),
+            'id' => $bigWinner->getId()
+        ];
+        
+        $request->getSession()->set('lottery_winner', $winner);
+
+        return $winner;
+    }
+
     #[Route('/email-data', name: 'admin_email_data')]
     public function emailData(UserRepository $userRepo): Response
     {
@@ -65,7 +81,7 @@ class AdminController extends AbstractController
         $users = $entityManager->createQuery(
             'SELECT DISTINCT u.id, u.firstName, u.lastName, u.email, u.bigwinner
          FROM App\Entity\User u
-         JOIN App\Entity\Code c WITH c.user = u
+         JOIN App\Entity\Code c WITH c.users = u
          WHERE c.isUsed = :isUsed'
         )
             ->setParameter('isUsed', true)
@@ -84,7 +100,8 @@ class AdminController extends AbstractController
         }
 
         // Sélectionner un gagnant au hasard
-        $winner = $users[array_rand($users)];
+        $randomIndex = array_rand($users);
+        $winner = $users[$randomIndex];
 
         // Préparer les informations du gagnant
         $winnerInfo = [
@@ -102,9 +119,9 @@ class AdminController extends AbstractController
         $request->getSession()->set('lottery_winner', $winnerInfo);
 
         // Ajouter un message flash
-        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès. Le gagnant est '.$user['firstName'].' '.$user['lastName']);
+        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès. Le gagnant est '.$winnerInfo['name']);
 
         // Rediriger vers le dashboard admin
-        return $this->redirectToRoute('admin_dashboard', ['winner' => true]);
+        return $this->redirectToRoute('admin_dashboard');
     }
 }
