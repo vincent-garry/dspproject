@@ -71,6 +71,7 @@ class FacebookAuthenticator extends OAuth2Authenticator
 
                     // L'adresse n'est généralement pas disponible via Facebook, donc on la laisse vide
                     $user->setAddress('');
+                    $user->setBigwinner(false);
 
                     // Vous devrez générer un mot de passe aléatoire car le champ ne peut pas être null
                     $user->setPassword(bin2hex(random_bytes(16)));

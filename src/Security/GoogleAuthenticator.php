@@ -128,6 +128,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
                 $randomPassword = bin2hex(random_bytes(16));
                 $hashedPassword = $this->passwordHasher->hashPassword($user, $randomPassword);
                 $user->setPassword($hashedPassword);
+                $user->setBigwinner(false);
 
                 $user->setRoles(['ROLE_USER']);
 
