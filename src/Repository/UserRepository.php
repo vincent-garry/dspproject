@@ -42,6 +42,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getResult();
     }
 
+    public function getBigWinner(): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.bigwinner = :bigwinner')
+            ->setParameter('bigwinner', true)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
