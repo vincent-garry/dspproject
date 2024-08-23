@@ -23,6 +23,21 @@
                 </a>
             </div>
         {% endif %}
+
+    <h1>Valider un code</h1>
+
+    {{ form(form) }}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
         <div class="dashboard d-flex justify-content-evenly flex-wrap">
             <div class="card card-dashboard text-center mt-3 hover-shadow-blue">
                 <h2 class="fs-2 mt-3 mb-3">Statistiques</h2>

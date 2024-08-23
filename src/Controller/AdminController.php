@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Code;
 use App\Entity\User;
+use App\Form\ValidatePriceType;
 use App\Repository\CodeRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,8 +17,11 @@ use Doctrine\ORM\EntityManagerInterface;
 class AdminController extends AbstractController
 {
     #[Route('/', name: 'admin_dashboard')]
-    public function dashboard(CodeRepository $ticketRepo, UserRepository $userRepo, Request $request): Response
+    public function dashboard(CodeRepository $ticketRepo, UserRepository $userRepo, CodeRepository $codeRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
+        $form = $this->createForm(ValidatePriceType::class);
+        $form->handleRequest($request);
+
         $genderStats = $userRepo->getGenderStats();
 
         $winner = null;
@@ -35,10 +39,46 @@ class AdminController extends AbstractController
             'genderStats' => $this->formatStats($genderStats),
         ];
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $user = $data['user'];
+            $codeString = $data['code'];
+
+            // Recherchez le code dans la base de données
+            $code = $codeRepository->findOneBy(['code' => $codeString]);
+
+            if ($code) {
+                // Vérifiez si le code est associé à l'utilisateur sélectionné
+                if ($this->isCodeAssociatedWithUser($code, $user)) {
+                    // Marquez le code comme validé
+                    $code->setDelivry(true);
+                    $entityManager->persist($code);
+                    $entityManager->flush();
+                    $this->addFlash('success', 'Le code a été validé avec succès.');
+                } else {
+                    $this->addFlash('error', 'Ce code n\'est pas associé à l\'utilisateur sélectionné.');
+                }
+            } else {
+                $this->addFlash('error', 'Code invalide ou inexistant dans la base de données.');
+            }
+
+            return $this->redirectToRoute('admin_dashboard');
+        }
+
         return $this->render('admin/dashboard.html.twig', [
             'stats' => $stats,
             'winner' => $winner,
+            'form' => $form->createView(),
         ]);
+    }
+
+    private function isCodeAssociatedWithUser($code, $user): bool
+    {
+        $associatedUsers = $code->getUsers();
+        if($associatedUsers == $user){
+            return true;
+        }
+        return false;
     }
 
     private function formatStats(array $stats): array

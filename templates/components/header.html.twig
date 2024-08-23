@@ -32,13 +32,16 @@
     </div>
 </nav>
 
-{% if app.user %}
     {# Sous-menu vert #}
     <div class="submenu">
         <ul class="nav align-items-center justify-content-evenly h-100">
             <li class="nav-item d-flex align-items-center">
                 <a class="nav-link fs-3 fw-semibold text-black link-primary" href="{{ path('app_home') }}"><p>Accueil</p></a>
             </li>
+            <li class="nav-item d-flex align-items-center">
+                <a class="nav-link fs-3 fw-semibold text-black link-primary" href="{{ path("app_reglement") }}"><p>Règlement concours</p></a>
+            </li>
+            {% if app.user %}
             <li class="nav-item d-flex align-items-center">
                 <a class="nav-link fs-3 fw-semibold text-black link-primary" href="{{ path('app_lottery') }}"><p>Loterie</p></a>
             </li>
@@ -50,6 +53,7 @@
                     <a class="nav-link fs-3 fw-semibold text-black link-primary" href="/admin"><p>Centre d'administration</p></a>
                 </li>
             {% endif %}
+            {% endif %}
         </ul>
     </div>
-{% endif %}
+
