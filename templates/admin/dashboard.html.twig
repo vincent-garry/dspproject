@@ -54,6 +54,14 @@
                         <p class="p-info-title p-2">Nombre total de prix récupérés :</p>
                         <p class="p-info-value p-2">{{ stats.totalPrizes }}</p>
                     </div>
+                      <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                        <p class="p-info-title p-2">Nombre prix livré :</p>
+                        <p class="p-info-value p-2">{{ stats.delivry }}</p>
+                    </div>
+                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                        <p class="p-info-title p-2">Nombre prix non livré :</p>
+                        <p class="p-info-value p-2">{{ stats.notDelivered }}</p>
+                    </div>
                     <!-- Élement canvas pour le graphique -->
                     <canvas id="myPieChart" class="d-flex align-items-center w-100 pt-2"></canvas>
                 </div>

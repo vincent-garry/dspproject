@@ -29,13 +29,15 @@ class AdminController extends AbstractController
             $winner = $request->getSession()->get('lottery_winner');
             $request->getSession()->remove('lottery_winner'); // Nettoyer la session après utilisation
         } elseif ($winner = $userRepo->getBigwinner()) {
-            $winner = $this->formatBigWinner($request,$winner);
+            $winner = $this->formatBigWinner($request, $winner);
         }
 
         $stats = [
             'totalTickets' => $ticketRepo->count([]),
             'usedTickets' => $ticketRepo->count(['isUsed' => true]),
             'totalPrizes' => $ticketRepo->count(['isUsed' => true]),
+            'delivry' => $ticketRepo->count(['delivry' => true]),
+            'notDelivered' => $ticketRepo->count(['isUsed' => true, 'delivry' => false]),
             'genderStats' => $this->formatStats($genderStats),
         ];
 
@@ -75,7 +77,7 @@ class AdminController extends AbstractController
     private function isCodeAssociatedWithUser($code, $user): bool
     {
         $associatedUsers = $code->getUsers();
-        if($associatedUsers == $user){
+        if ($associatedUsers == $user) {
             return true;
         }
         return false;
@@ -91,14 +93,14 @@ class AdminController extends AbstractController
         return $formatted;
     }
 
-    private function formatBigWinner(Request $request,User $bigWinner): array
+    private function formatBigWinner(Request $request, User $bigWinner): array
     {
         $winner =  [
             'name' => $bigWinner->getFirstName() . ' ' . $bigWinner->getLastName(),
             'email' => $bigWinner->getEmail(),
             'id' => $bigWinner->getId()
         ];
-        
+
         $request->getSession()->set('lottery_winner', $winner);
 
         return $winner;
@@ -131,9 +133,9 @@ class AdminController extends AbstractController
             $this->addFlash('warning', 'Aucun utilisateur éligible pour le tirage au sort.');
             return $this->redirectToRoute('admin_dashboard');
         } else {
-            foreach($users as $user) {
-                if($user['bigwinner'] == true) {
-                    $this->addFlash('danger', 'Le tirage a déjà été effectué, le gagnant est '.$user['firstName'].' '.$user['lastName']);
+            foreach ($users as $user) {
+                if ($user['bigwinner'] == true) {
+                    $this->addFlash('danger', 'Le tirage a déjà été effectué, le gagnant est ' . $user['firstName'] . ' ' . $user['lastName']);
                     return $this->redirectToRoute('admin_dashboard');
                 }
             }
@@ -159,7 +161,7 @@ class AdminController extends AbstractController
         $request->getSession()->set('lottery_winner', $winnerInfo);
 
         // Ajouter un message flash
-        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès. Le gagnant est '.$winnerInfo['name']);
+        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès. Le gagnant est ' . $winnerInfo['name']);
 
         // Rediriger vers le dashboard admin
         return $this->redirectToRoute('admin_dashboard');
