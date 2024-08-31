@@ -11,39 +11,87 @@
     margin: 10px;
   }
 }
+.container-validate-price {
+  background-color: rgba($blue-color, 0.3);
+  .form-validate-price {
+    // h2 {
+    color: $dark-color;
+    background-color: rgba($white, 0.5);
+
+    // }
+    .box-required-validate-price {
+      justify-content: space-around;
+      div {
+        display: flex;
+        flex-direction: column;
+        width: $oneThird;
+        gap: 1.3em;
+        label {
+          font-size: 1em;
+        }
+        #validate_price_user {
+          border-radius: 15px 15px 0 0 !important;
+        }
+        #validate_price_code {
+          border-radius: 25px !important;
+        }
+      }
+      div {
+        align-self: end;
+        #validate_price_submit {
+          color: $white;
+          border: none;
+        }
+      }
+    }
+  }
+}
+.br-btn-modal {
+  display: none;
+}
 .info-row-winner {
   background-color: rgba($pink-color, 0.3) !important;
 }
 
 #myPieChart,
 #genderBarChart {
-  width: 90% !important;
-  height: 700px !important;
+  width: 80% !important;
+  height: 650px !important;
 }
 
-@media (max-width: 1300px) or (max-device-width: 1300px) {
+@media (max-width: 1300px) {
   #myPieChart,
   #genderBarChart {
-    height: 650px !important;
-  }
-}
-
-@media (max-width: 1200px) or (max-device-width: 1200px) {
-  #myPieChart,
-  #genderBarChart {
-    width: 85% !important;
-
     height: 600px !important;
   }
 }
 
-@media (max-width: 1080px) or (max-device-width: 1080px) {
+@media (max-width: 1200px) {
+  #myPieChart,
+  #genderBarChart {
+    width: 75% !important;
+    height: 550px !important;
+  }
+}
+
+@media (max-width: 1080px) {
   #myPieChart,
   #genderBarChart {
     height: 500px !important;
   }
+  .box-required-validate-price {
+    // justify-content: center;
+    flex-direction: column;
+    div {
+      width: 100% !important;
+      label {
+        font-size: 1.5em !important;
+        text-align: left;
+      }
+    }
+  }
 }
-@media (max-width: 900px) or (max-device-width: 900px) {
+@media (max-width: 900px) {
   .dashboard {
     padding: 2%;
 
@@ -59,12 +107,27 @@
       width: 80% !important;
     }
   }
+  .br-btn-modal {
+    display: block;
+  }
 }
-@media (max-width: 450px) or (max-device-width: 450px) {
+@media (max-width: 650px) {
+  #btn-tirage {
+    width: 100% !important;
+  }
+}
+@media (max-width: 450px) {
   .card-dashboard,
   .card-dashboard-mail {
     p {
       font-size: 12px;
+    }
+  }
+}
+@media (max-width: 650px) {
+  #btn-tirage {
+    p {
+      font-size: 14px !important;
     }
   }
 }

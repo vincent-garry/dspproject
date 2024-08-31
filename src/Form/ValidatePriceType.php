@@ -19,11 +19,9 @@ class ValidatePriceType extends AbstractType
             ->add('user', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'email',
+                'required' => true,
                 'placeholder' => 'Sélectionnez un utilisateur',
                 'label' => 'Utilisateur',
-                'attr' => [
-                    'class' => 'js-select2'
-                ]
             ])
             ->add('code', TextType::class, [
                 'label' => 'Code à valider',
@@ -34,6 +32,7 @@ class ValidatePriceType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Valider le code',
+
             ]);
     }
 

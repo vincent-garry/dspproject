@@ -21,6 +21,15 @@ main {
   align-items: center;
   justify-content: center;
 }
+.box-col {
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oneThird {
+  width: $oneThird !important;
+}
 .w-50 {
   width: 50% !important;
 }
@@ -35,6 +44,7 @@ main {
   width: 95% !important;
   border-radius: 0.25rem !important;
 }
+.box-col,
 .f-box-col {
   flex-direction: column;
 }
@@ -43,8 +53,15 @@ main {
     width: 90% !important;
   }
 }
+.bg-tea {
+  background-color: rgba($lightgreen-color, 0.1);
+}
+.text-tea {
+  color: $green-color;
+}
 
 p,
+li,
 h1,
 h2,
 h3,
@@ -53,6 +70,15 @@ label {
   text-shadow: 0 2px 4px rgba($dark-color, 0.175);
   padding: 0 !important;
   margin: 0 !important;
+}
+.list-group-item {
+  & {
+    border: 0 !important;
+  }
+}
+
+.br {
+  display: none;
 }
 .hover-25:hover {
   opacity: 25%;
@@ -96,6 +122,7 @@ a {
 .btn {
   & {
     transition: transform 1s ease-in-out;
+    color: $white;
     p {
       color: $white;
     }
@@ -105,7 +132,6 @@ a {
     }
   }
 }
-
 select,
 button,
 input {
@@ -155,9 +181,24 @@ input {
 form {
   border-radius: 8px;
   padding: 2rem;
-  margin-top: 2rem;
+  margin: 2rem;
 }
 
+.modal-content {
+  & {
+    border-radius: 0.25rem;
+    padding: 2em;
+    background-color: rgba($darkblue-color, 0.5) !important;
+    // color: $white;
+    .sub-modal {
+      border-radius: 0.25rem;
+      background-color: rgba($white, 0.7) !important;
+      .modal-footer {
+        border: none;
+      }
+    }
+  }
+}
 // fancy shit
 .zoom-1-05 {
   transition: transform 0.2s ease-in-out;
@@ -190,12 +231,12 @@ form {
 .custom-container {
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: left; /* Aligne le texte à gauche */
-}
-.custom-container p, .custom-container ul {
-  text-align: left; /* Assure que tous les paragraphes et listes sont alignés à gauche */
-}
-.custom-container h1, .custom-container h2 {
-  text-align: left; /* Aligne les titres à gauche */
+  p,
+  ul,
+  h1,
+  h2 {
+    text-align: left; /* Aligne le texte à gauche */
+  }
 }

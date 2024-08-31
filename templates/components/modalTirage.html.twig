@@ -1,0 +1,61 @@
+<div class="d-flex align-items-center justify-content-center p-5">
+	<button id="btn-tirage" class="btn-pink btn hover-25 rounded-pill w-50 shadow" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+		<p class="fs-3 d-flex align-items-center h-100 justify-content-center" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+			<strong>
+				<em>Tirage au sort
+					<br class="br-btn-modal">du grand gagnant
+				</em>
+			</strong>
+		</p>
+	</button>
+</div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="sub-modal">
+				<div class="modal-header">
+					<h1 class="modal-title fs-3" id="exampleModalToggleLabel">Tirage au sort</h1>
+					<button id="btn-close" type="button" class="btn-close white" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>Êtes-vous sûr de vouloir lancer le tirage et de savoir qui sera le grand gagnant ?</p>
+				</div>
+				<div class="modal-footer box justify-content-evenly">
+					<div class="f-box align-items-center gap-2">
+						<button id="btn-cancel" class="btn btn-darkblue btn hover-25 rounded-pill w-50" data-bs-toggle="modal">
+							<p>Annuler</p>
+						</button>
+						<a href="{{ path('admin_tirage') }}" class="btn btn-blue btn hover-25 rounded-pill w-50" data-bs-toggle="modal">
+							<p>Tirage</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	// Sélectionnez le bouton qui déclenche le modal
+const button = document.getElementById('btn-tirage');
+// Sélectionnez le bouton de fermeture
+const closeButton = document.getElementById('btn-close');
+
+const closeCancel = document.getElementById('btn-cancel');
+
+
+// Sélectionnez le modal lui-même
+const modal = new bootstrap.Modal(document.getElementById('exampleModalToggle'));
+
+// Ajoutez un écouteur d'événement au bouton pour déclencher le modal
+button.addEventListener('click', () => {
+modal.show();
+});
+
+// Ajoutez un écouteur d'événement au bouton de fermeture
+closeButton.addEventListener('click', () => {
+modal.hide();
+});
+closeCancel.addEventListener('click', () => {
+modal.hide();
+});
+</script>

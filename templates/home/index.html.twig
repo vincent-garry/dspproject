@@ -1,36 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
-{% block meta_description %}Page de présentation du concours Thé Tip Top{% endblock %}
-{% block meta_keywords %}Concours, Thé, Thé Tip Top, Concours thé, Bio, Gains{% endblock %}
+{% block meta_description %}Page de présentation du concours Thé Tip Top
+{% endblock %}
+{% block meta_keywords %}Concours, Thé, Thé Tip Top, Concours thé, Bio, Gains
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1 class="mb-4 fs-1 fw-semibold pt-5 pb-5">Les différents lots à gagner</h1>
-        <div class="d-flex flex-column align-items-center justify-content-center gap-5 prize-grid">
-            <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
-            {% for prize in prizes %}
-                <div class="card card-prize zoom-1-1">
-                    <div class="card p-2 border-0">
-                        <img src="{{ asset('images/' ~ prize.image ) }}" class="card-img-top" alt="{{ prize.name }}">
-                        {% if prize.rank %}
-                            <div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{ prize.name }}</p>
-                        <p class="card-subtitle mb-2 text-muted">Une valeur de <span class="fw-semibold">{{ prize.price }} €</span></p>
-                        <p class="card-text">{{ prize.description }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-            </div>
-            <div class="d-flex align-items-center justify-content-center pt-3">
-                <a href="{{ path('app_lottery') }}" class="btn-pink btn-lottery btn hover-25 rounded-pill">
-                    <p class="text-white fs-2 d-flex align-items-center h-100 justify-content-center">Loterie</p>
-                </a>
-            </div>
-        </div>
-    </div>
+
+	<div class="box-col bg-tea p-3">
+		<div class="py-5 w-100">
+			<div class="container container-title-home">
+				<h1 class="title-home text-tea">Grand Jeu-Concours
+					<br class="br-home">Thé Tip Top</h1>
+				<p class="lead">Du 1er au 30 septembre 2024</p>
+			</div>
+		</div>
+		<div class="card f-box-col mt-3 gap-2 ">
+			<div class="box-info-home f-box gap-3">
+				<div class="card-info-home card-body w-50">
+					<h2 class="card-title text-center text-tea mb-4">🍵 100% des tickets<br class="br-home">
+						sont gagnants !</h2>
+
+					<p class="lead text-center">Participez et tentez de remporter :</p>
+					<ul class="list-group box-col gap-3 p-2 mb-4">
+
+						<li class="list-group-item">Des infuseurs à thé</li>
+						<li class="list-group-item">Des boîtes de thé détox ou d'infusion</li>
+						<li class="list-group-item">Nos thés signature</li>
+						<li class="list-group-item">Des coffrets découverte</li>
+					</ul>
+				</div>
+				<div class="card-info-home card-body w-50">
+					<h2 class="card-title text-center text-tea mb-4">Comment participer ?</h2>
+					<ul class="ul-home list-group list-group-numbered f-box-col gap-3 p-2">
+						<li class="list-group-item">Effectuez un achat d'au moins 49€ dans l'une de nos boutiques ou sur notre site internet.</li>
+						<li class="list-group-item">Récupérez votre code unique à 10 caractères sur votre ticket de caisse ou votre facture.</li>
+						<li class="list-group-item">Inscrivez-vous sur ce site et saisissez votre code pour découvrir instantanément votre gain !</li>
+					</ul>
+
+				</div>
+			</div>
+			<div class="alert alert-tirage f-box" role="alert">
+				<p>
+					<strong>
+						Grand prix :&nbsp;
+					</strong>
+					Participez au tirage au sort pour gagner un an de thé d'une valeur de 360€ !
+				</p>
+			</div>
+
+		</div>
+
+		<div class="box-col text-center mt-5 w-100 gap-2">
+			<p class="lead">N'attendez plus, le nombre de participations est limité à 500 000 tickets.</p>
+			<p>
+				<em>L'équipe Thé Tip Top</em>
+			</p>
+		</div>
+	</div>
+
+	<div class="container">
+		<h1 class="mb-4 fs-1 fw-semibold pt-5 pb-5">Les différents lots à gagner</h1>
+		<div class="d-flex flex-column align-items-center justify-content-center gap-5 prize-grid">
+			<div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
+				{% for prize in prizes %}
+					<div class="card card-prize zoom-1-1">
+						<div class="card p-2 border-0">
+							<img src="{{ asset('images/' ~ prize.image ) }}" class="card-img-top" alt="{{ prize.name }}">
+							{% if prize.rank %}
+								<div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
+							{% endif %}
+						</div>
+						<div class="card-body">
+							<p class="card-title">{{ prize.name }}</p>
+							<p class="card-subtitle mb-2 text-muted">Une valeur de
+								<span class="fw-semibold">{{ prize.price }}
+									€</span>
+							</p>
+							<p class="card-text">{{ prize.description }}</p>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="d-flex align-items-center justify-content-center pt-3">
+				<a href="{{ path('app_lottery') }}" class="btn-pink btn-lottery btn hover-25 rounded-pill">
+					<p class="text-white fs-2 d-flex align-items-center h-100 justify-content-center">Loterie</p>
+				</a>
+			</div>
+		</div>
+	</div>
 {% endblock %}

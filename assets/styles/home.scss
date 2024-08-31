@@ -4,7 +4,22 @@
   width: 300px;
   height: 80px;
 }
-
+.title-home {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+.alert-tirage {
+  color: $darkblue-color;
+  background-color: rgba($blue-color, 0.1);
+}
+.ul-home {
+  border-radius: 8px;
+  border: 1px solid rgba($darkblue-color, 0.1);
+}
+.br-home {
+  display: none;
+}
 @media (max-width: 1080px) {
   main {
     .btn-loterie {
@@ -13,6 +28,61 @@
       p {
         font-size: 20px !important;
       }
+    }
+  }
+  .br-home {
+    display: block;
+  }
+}
+@media (max-width: 840px) {
+  .box-info-home {
+    flex-direction: column;
+    .card-info-home {
+      width: 100% !important;
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+      }
+    }
+  }
+  .title-home {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-title {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  .title-home {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-title-home {
+    .lead {
+      font-size: 1rem;
+    }
+  }
+  .card-title {
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  li {
+    font-size: 0.8rem;
+  }
+  .alert-tirage {
+    p {
+      font-size: 0.8rem;
     }
   }
 }
