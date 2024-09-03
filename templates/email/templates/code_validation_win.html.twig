@@ -1,0 +1,51 @@
+{% extends 'email/mailTemplateBase.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="header">
+            <h1>Félicitations !</h1>
+            <p>Votre code a été validé avec succès</p>
+        </div>
+        <div class="content">
+            <p>Cher(e) {{ name }},</p>
+            <p>Nous sommes ravis de vous informer que votre code a été validé avec succès. En récompense de votre participation, vous avez gagné un merveilleux produit de thé !</p>
+            
+            <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
+				{% if prize %}
+					<div class="card card-prize zoom-1-1">
+						<div class="card p-2 border-0">
+							<img src="{{ absolute_url(asset('images/' ~ prize.image )) }}" class="card-img-top" alt="{{ prize.name }}">
+							{% if prize.rank %}
+								<div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
+							{% endif %}
+						</div>
+						<div class="card-body">
+							<p class="card-title">{{ prize.name }}</p>
+							<p class="card-subtitle mb-2 text-muted">Une valeur de
+								<span class="fw-semibold">{{ prize.price }}
+									€</span>
+							</p>
+							<p class="card-text">{{ prize.description }}</p>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+            <div class="mt-3">
+                <p>Pour réclamer votre prix ou obtenir plus d'informations, cliquez sur le bouton ci-dessous :</p>
+                
+                <p style="text-align: center;">
+                    <a href={{ claim_url }} class="button">Voir mes gains</a>
+                </p>
+                
+                <p>Nous espérons que vous apprécierez ce délicieux thé. N'hésitez pas à nous faire part de vos impressions !</p>
+                
+                <p>Cordialement,<br>L'équipe Thé Tip Top</p>
+            <div>
+        </div>
+ 
+    </div>
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <p>Cet email a été envoyé à {{ mail }}. Si vous avez des questions, contactez-nous à <a href="mailto:contact@thetiptop.com">contact@thetiptop.com</a>.</p>
+    </div>
+{% endblock %}

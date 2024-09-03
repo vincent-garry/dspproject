@@ -1,0 +1,43 @@
+{% extends 'email/mailTemplateBase.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="header">
+            <h1>Félicitations !</h1>
+            <p>Vous êtes le grand gagnant du tirage au sort Thé Tip Top</p>
+        </div>
+        <div class="content">
+            <p>Cher(e) {{ name }},</p>
+            <p>Nous sommes ravis de vous annoncer que vous êtes le grand gagnant de notre tirage au sort ! Votre participation a été sélectionnée parmi des milliers d'autres, et vous remportez notre grand prix !</p>
+            
+            <div class="d-flex align-items-center justify-content-center gap-5 w-100 flex-wrap">
+                <div class="card card-prize zoom-1-1">
+                    <div class="card p-2 border-0">
+                        <img src="{{ absolute_url(asset('images/' ~ grand_prize.image )) }}" class="card-img-top" alt="{{ grand_prize.name }}">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title">{{ grand_prize.name }}</p>
+                        <p class="card-subtitle mb-2 text-muted">Une valeur de <span class="fw-semibold">{{ grand_prize.price }} €</span></p>
+                        <p class="card-text">{{ grand_prize.description }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <p>Pour réclamer votre grand prix, veuillez cliquer sur le bouton ci-dessous :</p>
+                            
+                <p>Notre équipe vous contactera dans les plus brefs délais pour organiser la remise de votre prix. Assurez-vous de vérifier régulièrement vos e-mails et votre téléphone.</p>
+                
+                <p>Encore toutes nos félicitations pour cette incroyable victoire !</p>
+                
+                <p>Cordialement,<br>L'équipe Thé Tip Top</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="footer">
+        <p>Cet e-mail a été envoyé à {{ mail }}. Si vous avez des questions concernant votre prix, contactez-nous à <a href="mailto:winners@thetiptop.com">winners@thetiptop.com</a>.</p>
+    </div>
+{% endblock %}

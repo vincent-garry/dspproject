@@ -9,6 +9,9 @@
             {{ form_start(registrationForm, { attr: {'class': 'signup-form w-100 d-flex flex-column align-items-center gap-3 p-0'}} ) }}
             {{ form_row(registrationForm.email,{ attr: {'class': 'form-control w-100'}}) }}
             {{ form_row(registrationForm.password,{ attr: {'class': 'form-control w-100'}}) }}
+            {% for flash_error in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+            {% endfor %}
             {{ form_row(registrationForm.firstName,{ attr: {'class': 'form-control w-100'}}) }}
             {{ form_row(registrationForm.lastName,{ attr: {'class': 'form-control w-100'}}) }}
             {{ form_row(registrationForm.gender,{ attr: {'class': 'form-control w-100'}}) }}
@@ -50,11 +53,4 @@
             });
         </script>
     </div>
-
-    <style>
-        #inscriptionButton:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-    </style>
 {% endblock %}

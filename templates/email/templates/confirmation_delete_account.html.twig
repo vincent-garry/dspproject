@@ -1,0 +1,28 @@
+{% extends 'email/mailTemplateBase.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="header">
+            <h1>Confirmation de suppression de compte</h1>
+            <p>Nous sommes tristes de vous voir partir</p>
+        </div>
+        <div class="content">
+            <p>Cher(e) {{ name }},</p>
+            <p>Nous confirmons que votre demande de suppression de compte a bien été prise en compte. Votre compte Thé Tip Top sera définitivement supprimé dans les prochaines 24 heures.</p>
+
+            <div class="mt-3">
+                <p>Si vous avez changé d'avis ou si cette demande est une erreur, vous pouvez annuler la suppression en cliquant sur le bouton ci-dessous :</p>
+                
+                <p>Nous espérons vous revoir bientôt chez Thé Tip Top. N'hésitez pas à nous contacter si vous avez des questions ou des préoccupations.</p>
+                
+                <p>Cordialement,<br>L'équipe Thé Tip Top</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <div class="footer">
+        <p>Cet e-mail a été envoyé à {{ mail }}. Si vous avez des questions, contactez-nous à <a href="mailto:support@thetiptop.com">support@thetiptop.com</a>.</p>
+    </div>
+{% endblock %}
