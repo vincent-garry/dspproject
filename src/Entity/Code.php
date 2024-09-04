@@ -56,7 +56,29 @@ class Code
 
         return $this;
     }
+    public function getPrice(): ?string
+    {
+        return $this->prize;
+    }
 
+    public function setPrice(string $prize): static
+    {
+        $this->prize = $prize;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->prize;
+    }
+
+    public function setDescription(string $prize): static
+    {
+        $this->prize = $prize;
+
+        return $this;
+    }
     public function getUsers(): ?User
     {
         return $this->users;
@@ -91,5 +113,10 @@ class Code
         $this->delivry = $delivry;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->prize . ".jpg";
     }
 }

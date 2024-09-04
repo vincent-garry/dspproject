@@ -3,6 +3,11 @@
 {% block title %}Mes gains{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success_lottery') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <h1 class="mb-4 fs-1 fw-semibold pt-5 pb-5">Mes gains</h1>
     {% if prizes is empty %}
         <p>Vous n'avez pas encore de gains.</p>
@@ -13,9 +18,7 @@
                     <div class="card card-prize card-bg-{{ prize.delivry  ? '1' : '0  zoom-1-1' }}">
                         <div class="card p-2 border-0">
                             <img src="{{ asset('images/' ~ prize.prize ~ '.jpg' ) }}" class="card-img-top" alt="{{ prize.prize }}">
-                            {# {% if prize.rank %}
-                                <div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
-                            {% endif %} #}
+
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ prize.prize }}</h5>

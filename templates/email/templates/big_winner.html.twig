@@ -16,9 +16,9 @@
                         <img src="{{ absolute_url(asset('images/' ~ grand_prize.image )) }}" class="card-img-top" alt="{{ grand_prize.name }}">
                     </div>
                     <div class="card-body">
-                        <p class="card-title">{{ grand_prize.name }}</p>
-                        <p class="card-subtitle mb-2 text-muted">Une valeur de <span class="fw-semibold">{{ grand_prize.price }} €</span></p>
-                        <p class="card-text">{{ grand_prize.description }}</p>
+                        <p class="card-title"> grand_prize.name </p>
+                        <p class="card-subtitle mb-2 text-muted">Une valeur de <span class="fw-semibold"> grand_prize.price €</span></p>
+                        <p class="card-text">description </p>
                     </div>
                 </div>
             </div>
@@ -38,6 +38,6 @@
 
 {% block footer %}
     <div class="footer">
-        <p>Cet e-mail a été envoyé à {{ mail }}. Si vous avez des questions concernant votre prix, contactez-nous à <a href="mailto:winners@thetiptop.com">winners@thetiptop.com</a>.</p>
+        <p>Cet e-mail a été envoyé à {{ mail }}. Si vous avez des questions concernant votre prix, contactez-nous à <a href="mailto:support@thetiptop.com">support@thetiptop.com</a>.</p>
     </div>
 {% endblock %}

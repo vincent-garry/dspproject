@@ -12,10 +12,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/admin')]
 class AdminController extends AbstractController
 {
+
+    protected MailerController $MAILER;
+
+    public function __construct(TransportInterface $transport)
+    {
+        $this->MAILER = new MailerController($transport);
+    }
+
     #[Route('/', name: 'admin_dashboard')]
     public function dashboard(CodeRepository $ticketRepo, UserRepository $userRepo, CodeRepository $codeRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -160,8 +171,32 @@ class AdminController extends AbstractController
         // Stocker les informations du gagnant en session
         $request->getSession()->set('lottery_winner', $winnerInfo);
 
+        $mailContent = [
+            'from' => new Address('noreply@thetiptop.com', 'No Reply'),
+            'to' => $winnerInfo['email'],
+            'subject' => 'Petit(e) veinard(e) !',
+            'htmlTemplate' => 'email/templates/big_winner.html.twig',
+            'context' => [
+                'prize' => [
+                    'image' => "big winner.jpg",
+                    'name' => "big winner",
+                ],
+                'name' => $winnerInfo['name'],
+                'mail' => $winnerInfo['email'],
+                'claim_url' =>
+                $this->generateUrl('app_my_prizes', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            ]
+        ];
+
+        $this->MAILER->setMailContent($mailContent);
+
+        try {
+            $this->MAILER->send();
+        } catch (\Exception $e) {
+            return $this->redirectToRoute('admin_dashboard');
+        }
         // Ajouter un message flash
-        $this->addFlash('success', 'Le tirage au sort a été effectué avec succès. Le gagnant est ' . $winnerInfo['name']);
+        $this->addFlash('success_tirage', 'Le tirage au sort a été effectué avec succès. Le gagnant est ' . $winnerInfo['name']);
 
         // Rediriger vers le dashboard admin
         return $this->redirectToRoute('admin_dashboard');

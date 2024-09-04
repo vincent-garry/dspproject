@@ -15,6 +15,7 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use Symfony\Component\Security\Http\Authenticator\FormLoginAuthenticator;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -53,39 +54,26 @@ class RegistrationController extends AbstractController
             $user->setBirthdate("01/01/2000");
             $user->setFirstName("test");
             $user->setLastName("test");
-            $user->setGender("male");
+            $user->setGender("female");
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation(
-                'app_verify_email',
-                $user,
-                (new TemplatedEmail())
-                    ->from(new Address('noreply@thetiptop.com', 'No Reply'))
-                    ->to((string) $user->getEmail())
-                    ->cc("cpatop@outlook.fr")
-                    ->subject('Confirmez votre email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            try {
+                // generate a signed url and email it to the user
+                $sentMessage = $this->emailVerifier->sendEmailConfirmation(
+                    'app_verify_email',
+                    $user,
+                    (new TemplatedEmail())
+                        ->from(new Address('noreply@thetiptop.com', 'No Reply'))
+                        ->to((string) $user->getEmail())
+                        ->subject('Bienvenue chez Thé Tip Top !')
+                        ->htmlTemplate('email/templates/confirmation_email.html.twig')
+                );
 
-            );
-
-            // Envoi de l'e-mail de bienvenue
-            // $email = (new TemplatedEmail())
-            //     ->from(new Address('noreply@thetiptop.com', 'No Reply'))
-            //     ->to((string) $user->getEmail())
-            //     ->cc("cpatop@outlook.fr")
-            //     ->subject('Please Confirm your Email')
-            //     ->htmlTemplate('registration/confirmation_email.html.twig');
-            // ->context([
-            //     'prizes' => $prizes,
-            //     'fullName' => 'Patosh',
-            // ]);
-
-            // $mailer->send($email);
-            // var_dump("test");
-            // do anything else you need here, like send an email
-
+                $this->addFlash('success_registration', 'Votre inscription à été un fanc succès ! Et une confirmation de mail vous a été envoyé !');
+            } catch (\Exception $e) {
+                $this->addFlash('error_registration', 'Erreur lors de l\'envoi de l\'email : ');
+            }
             // Authentifier et connecter l'utilisateur
             return $userAuthenticator->authenticateUser(
                 $user,

@@ -2,20 +2,15 @@
 
 namespace App\Controller;
 
-use Mailtrap\Mime\MailtrapEmail;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Notifier\Message\EmailMessage;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class MailerController extends AbstractController
+class MailerControllerTest extends AbstractController
 {
     private TransportInterface $transport;
     private $prizes = [
@@ -72,8 +67,9 @@ class MailerController extends AbstractController
             'name' => "XXX",
             'mail' => "XXX",
             'confirmation_url' =>
-            $this->generateUrl('app_login', [], UrlGeneratorInterface::ABSOLUTE_URL)
-
+            $this->generateUrl('app_login', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'expiresAtMessageKey' =>  "XXX",
+            'expiresAtMessageData' => "XXX"
         ];
         $htmlTemplate = 'email/templates/confirmation_email.html.twig';
 
@@ -85,7 +81,7 @@ class MailerController extends AbstractController
             ->htmlTemplate($htmlTemplate)
             ->context($context);
 
-        // doesn't like i want 
+        // doesn't work like i want 
         // $mailer->send($email);
 
         // so to send :

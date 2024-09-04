@@ -14,9 +14,6 @@
 					<div class="card card-prize zoom-1-1">
 						<div class="card p-2 border-0">
 							<img src="{{ absolute_url(asset('images/' ~ prize.image )) }}" class="card-img-top" alt="{{ prize.name }}">
-							{% if prize.rank %}
-								<div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
-							{% endif %}
 						</div>
 						<div class="card-body">
 							<p class="card-title">{{ prize.name }}</p>
@@ -46,6 +43,6 @@
 {% endblock %}
 {% block footer %}
     <div class="footer">
-        <p>Cet email a été envoyé à {{ mail }}. Si vous avez des questions, contactez-nous à <a href="mailto:contact@thetiptop.com">contact@thetiptop.com</a>.</p>
+        <p>Cet email a été envoyé à {{ mail }}. Si vous avez des questions, contactez-nous à <a href="mailto:support@thetiptop.com">support@thetiptop.com</a>.</p>
     </div>
 {% endblock %}

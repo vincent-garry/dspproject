@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
@@ -20,7 +21,7 @@ class EmailVerifier
         private TransportInterface $transport
     ) {}
 
-    public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
+    public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): SentMessage
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
@@ -29,17 +30,16 @@ class EmailVerifier
             ['id' => $user->getId()]
         );
 
-        $context = $email->getContext();
-        $context['signedUrl'] = $signatureComponents->getSignedUrl();
-        $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
-        $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
-        $context['name'] = $user->getFirstName();
-        // $context['email'] = $user->getEmail();
+        $context = [
+            'name' => $user->getFullName(),
+            'mail' => $user->getEmail(),
+            'confirmation_url' => $signatureComponents->getSignedUrl(),
+            'expiresAtMessageKey' => $signatureComponents->getExpirationMessageKey(),
+            'expiresAtMessageData' => $signatureComponents->getExpirationMessageData()
+        ];
 
         $email->context($context);
-        $response = $this->transport->send($email);
-
-        // $this->mailer->send($email);
+        return $this->transport->send($email);
     }
 
     /**

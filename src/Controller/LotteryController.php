@@ -8,10 +8,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LotteryController extends AbstractController
 {
+    protected MailerController $MAILER;
+
+    public function __construct(TransportInterface $transport)
+    {
+        $this->MAILER = new MailerController($transport);
+    }
+
     #[Route('/lottery', name: 'app_lottery')]
     public function index(): Response
     {
@@ -25,7 +35,7 @@ class LotteryController extends AbstractController
         $code = $codeRepository->findOneBy(['code' => $submittedCode, 'isUsed' => false]);
 
         if (!$code) {
-            $this->addFlash('error', 'Code invalide ou déjà utilisé.');
+            $this->addFlash('error_lottery', 'Code invalide ou déjà utilisé.');
             return $this->redirectToRoute('app_lottery');
         }
 
@@ -33,14 +43,41 @@ class LotteryController extends AbstractController
         if (!$user) {
             // Stocker le code dans la session et rediriger vers la page de connexion
             $request->getSession()->set('pending_code', $submittedCode);
+            $this->addFlash('error_need_to_login', 'Code invalide ou déjà utilisé.');
             return $this->redirectToRoute('app_login');
         }
 
         $code->setUsers($user);
         $code->setUsed(true);
-        $entityManager->flush();
+        // $entityManager->flush();
 
-        $this->addFlash('success', 'Félicitations ! Vous avez gagné : ' . $code->getPrize());
+        $mailContent = [
+            'from' => new Address('noreply@thetiptop.com', 'No Reply'),
+            'to' => $user->getEmail(),
+            'subject' => 'Vous avez gagné un lot !',
+            'htmlTemplate' => 'email/templates/code_validation_win.html.twig',
+            'context' => [
+                'prize' => [
+                    'image' => $code->getImage(),
+                    'name' => $code->getPrize(),
+                    'price' => $code->getPrice(),
+                    'description' => $code->getDescription(),
+                ],
+                'name' => $user->getFullName(),
+                'mail' => $user->getEmail(),
+                'claim_url' =>
+                $this->generateUrl('app_my_prizes', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            ]
+        ];
+
+        $this->MAILER->setMailContent($mailContent);
+
+        try {
+            $this->MAILER->send();
+            $this->addFlash('success_lottery', 'Félicitations ! Vous avez gagné : ' . $code->getPrize());
+        } catch (\Exception $e) {
+            return $this->redirectToRoute('app_my_prizes');
+        }
         return $this->redirectToRoute('app_my_prizes');
     }
 }
