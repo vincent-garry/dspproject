@@ -19,6 +19,11 @@
 			{{ message }}
 		</div>
 	{% endfor %}
+	{% for message in app.flashes('success_delete_profile') %}
+        <div class="alert alert-primary" role='alert'>
+            {{ message }}
+        </div>
+    {% endfor %}
 	<div class="box-col bg-tea p-3">
 		<div class="py-5 w-100">
 

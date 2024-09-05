@@ -7,10 +7,19 @@
         <div class="alert alert-success" role='alert'>
             {{ message }}
         </div>
-        
     {% endfor %}
     {% for message in app.flashes('error_code_validation') %}
         <div class="alert alert-danger" role='alert'>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('success_tirage') %}
+        <div class="alert alert-success" role='alert'>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('warning_tirage') %}
+        <div class="alert alert-primary" role='alert'>
             {{ message }}
         </div>
     {% endfor %}

@@ -11,6 +11,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(): Response
     {
+
         $prizes = [
             ['name' => 'Infuseur à thé', 'image' => 'Infuseur à thé.jpg', 'description' => 'Un infuseur à thé pratique', 'price' => "15,40", 'rank' => 1],
             ['name' => 'Boîte de thé détox', 'image' => 'Boîte de thé détox.jpg', 'description' => '100g de thé détox', 'price' => "25,45", 'rank' => 2],

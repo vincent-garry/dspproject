@@ -8,6 +8,12 @@
 {% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success_update_profile') %}
+        <div class="alert alert-success" role='alert'>
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h1 class="mb-4 fs-1 fw-semibold pt-5 pb-5">Mon profil</h1>
     <div class="box">
         <div class="f-box shadow card-profile align-items-start justify-content-evenly gap-3 hover-shadow-blue">
@@ -50,6 +56,9 @@
                     <button type="button" id="edit-button" class="btn btn-blue w-100">
                         <p><i class="fas fa-edit"></i> Modifier</p>
                     </button>
+                    <button type="button" id="delete-account-button" class="btn btn-dark w-100" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
+                        <p><i class="bi bi-person-x"></i> Supprimer votre compte</p>
+                    </button>
                     <button type="submit" id="btn-save" class="btn btn-lightgreen w-100">
                         <p><i class="fas fa-save"></i> Enregistrer</p>
                     </button>
@@ -58,7 +67,7 @@
         </div>
 
     </div>
-
+    {% include 'components/modalDeleteAcount.html.twig' %}
     <h2 class="mb-4 fs-2 fw-semibold pt-5 pb-5">Mes gains</h2>
 
     {% if app.user.codes is empty %}
@@ -70,9 +79,6 @@
                     <div class="card card-prize card-bg-{{ prize.delivry  ? '1' : '0  zoom-1-1' }}">
                         <div class="card p-2 border-0">
                             <img src="{{ asset('images/' ~ prize.prize ~ '.jpg' ) }}" class="card-img-top" alt="{{ prize.prize }}">
-                            {# {% if prize.rank %}
-                                <div class="rotate-90-deg card-rank card-rank-{{ prize.rank }} rounded-circle d-flex align-items-center justify-content-center">{{ prize.rank }}</div>
-                            {% endif %} #}
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ prize.prize }}</h5>
@@ -107,10 +113,8 @@
                 yearRange: "-100:+0"
             });
             $("#edit-button").click(function() {
-                //console.log($(this).class());
-                //console.log();
 
-                $("#edit-form, #profile-card, #btn-save").toggle(); 
+                $("#edit-form, #profile-card, #btn-save, #delete-account-button").toggle(); 
 
                 $(this).toggleClass('btn-blue btn-dark'); 
                 $("#profile-button-group").toggleClass('w-100 profile-button-group');

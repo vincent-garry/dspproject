@@ -18,7 +18,7 @@
                         <ul>
                             <li>Participer à notre jeu-concour exclusif</li>
                             <li>Recevoir des offres spéciales sur nos thés</li>
-                            <li>Accéder à votre espace client personnalisé</li>
+                            <li>Accéder à votre espace client</li>
                         </ul>
                     </div>
                 </div>
@@ -42,6 +42,6 @@
 {% block footer %}
     <div class="footer">
         <p>Cet e-mail a été envoyé à {{ mail }}. Si vous avez des questions, contactez-nous à <a href="mailto:support@thetiptop.com">support@thetiptop.com</a>.</p>
-        <p>This link will expire {{ expiresAtMessageKey|trans(expiresAtMessageData) }}.</p>
+        <p>Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData) }}.</p>
 </div>
 {% endblock %}

@@ -2,25 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Code;
+use App\Controller\Mail\BaseController;
 use App\Repository\CodeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class LotteryController extends AbstractController
+class LotteryController extends BaseController
 {
-    protected MailerController $MAILER;
-
-    public function __construct(TransportInterface $transport)
-    {
-        $this->MAILER = new MailerController($transport);
-    }
 
     #[Route('/lottery', name: 'app_lottery')]
     public function index(): Response
@@ -49,7 +41,7 @@ class LotteryController extends AbstractController
 
         $code->setUsers($user);
         $code->setUsed(true);
-        // $entityManager->flush();
+        $entityManager->flush();
 
         $mailContent = [
             'from' => new Address('noreply@thetiptop.com', 'No Reply'),

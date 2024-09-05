@@ -8,6 +8,11 @@
             {{ message }}
         </div>
     {% endfor %}
+    {% for message in app.flashes('success_verified_email') %}
+        <div class="alert alert-succes" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
     <h1 class="mb-4 fs-1 fw-semibold vmb-5 mt-5">Connexion</h1>
     <div class="container text-start">
         <div class="login d-flex align-items-center justify-content-evenly gap-5 h-100">
