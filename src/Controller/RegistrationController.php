@@ -56,6 +56,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $this->addFlash('success_registration', 'Votre inscription à été un fanc succès ! Et une confirmation de mail vous a été envoyé !');
             try {
                 // generate a signed url and email it to the user
                 $sentMessage = $this->emailVerifier->sendEmailConfirmation(
@@ -67,8 +68,6 @@ class RegistrationController extends AbstractController
                         ->subject('Bienvenue chez Thé Tip Top !')
                         ->htmlTemplate('email/templates/confirmation_email.html.twig')
                 );
-
-                $this->addFlash('success_registration', 'Votre inscription à été un fanc succès ! Et une confirmation de mail vous a été envoyé !');
             } catch (\Exception $e) {
                 $this->addFlash('error_registration', 'Erreur lors de l\'envoi de l\'email : ');
             }

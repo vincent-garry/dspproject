@@ -64,10 +64,11 @@ class LotteryController extends BaseController
 
         $this->MAILER->setMailContent($mailContent);
 
+        $this->addFlash('success_lottery', 'Félicitations ! Vous avez gagné : ' . $code->getPrize());
         try {
             $this->MAILER->send();
-            $this->addFlash('success_lottery', 'Félicitations ! Vous avez gagné : ' . $code->getPrize());
         } catch (\Exception $e) {
+            $this->addFlash('warning_mail_not_send', 'Erreur lors de l\'envoi de l\'email');
             return $this->redirectToRoute('app_my_prizes');
         }
         return $this->redirectToRoute('app_my_prizes');

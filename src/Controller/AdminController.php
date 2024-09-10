@@ -137,7 +137,7 @@ class AdminController extends BaseController
             ->getResult();
 
         if (empty($users)) {
-            $this->addFlash('warning', 'Aucun utilisateur éligible pour le tirage au sort.');
+            $this->addFlash('warning_admissible_user', 'Aucun utilisateur éligible pour le tirage au sort.');
             return $this->redirectToRoute('admin_dashboard');
         } else {
             foreach ($users as $user) {
@@ -186,6 +186,7 @@ class AdminController extends BaseController
         try {
             $this->MAILER->send();
         } catch (\Exception $e) {
+            $this->addFlash('warning_mail_not_send', 'Erreur lors de l\'envoi de l\'email');
             return $this->redirectToRoute('admin_dashboard');
         }
         // Ajouter un message flash

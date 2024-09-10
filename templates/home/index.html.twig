@@ -9,13 +9,13 @@
 {% endblock %}
 
 {% block body %}
-	{% for message in app.flashes('success_registration') %}
-		<div class="alert alert-success">
+	{% for message in app.flashes('error_registration') %}
+		<div class="alert alert-danger"  role="alert">
 			{{ message }}
 		</div>
 	{% endfor %}
-	{% for message in app.flashes('error_registration') %}
-		<div class="alert alert-danger"  role="alert">
+	{% for message in app.flashes('warning_mail_not_send') %}
+		<div class="alert alert-warning"  role="alert">
 			{{ message }}
 		</div>
 	{% endfor %}
@@ -24,6 +24,11 @@
             {{ message }}
         </div>
     {% endfor %}
+	{% for message in app.flashes('success_registration') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
 	<div class="box-col bg-tea p-3">
 		<div class="py-5 w-100">
 

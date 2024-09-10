@@ -3,13 +3,24 @@
 {% block title %}Centre d'administration{% endblock %}
 
 {% block body %}
-    {% for message in app.flashes('success_code_validation') %}
-        <div class="alert alert-success" role='alert'>
+
+    {% for message in app.flashes('error_code_validation') %}
+        <div class="alert alert-danger" role='alert'>
+            {{ message }}
+        </div>
+    {% endfor %}v
+    {% for message in app.flashes('warning_tirage') %}
+        <div class="alert alert-warning" role='alert'>
             {{ message }}
         </div>
     {% endfor %}
-    {% for message in app.flashes('error_code_validation') %}
-        <div class="alert alert-danger" role='alert'>
+    {% for message in app.flashes('warning_admissible_user') %}
+        <div class="alert alert-warning" role='alert'>
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('success_code_validation') %}
+        <div class="alert alert-success" role='alert'>
             {{ message }}
         </div>
     {% endfor %}
@@ -18,11 +29,7 @@
             {{ message }}
         </div>
     {% endfor %}
-    {% for message in app.flashes('warning_tirage') %}
-        <div class="alert alert-primary" role='alert'>
-            {{ message }}
-        </div>
-    {% endfor %}
+
     <h1 class="mb-4 fs-1 fw-semibold vmb-5 mt-5">Centre d'administration</h1>
 
     <div class="box mt-5">
