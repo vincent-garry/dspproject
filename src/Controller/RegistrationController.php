@@ -46,13 +46,6 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $user->setRoles(['ROLE_USER']);
-            $user->setBigwinner(false);
-            $user->setAddress("test");
-            $user->setBirthdate("01/01/2000");
-            $user->setFirstName("test");
-            $user->setLastName("test");
-            $user->setGender("female");
             $entityManager->persist($user);
             $entityManager->flush();
 

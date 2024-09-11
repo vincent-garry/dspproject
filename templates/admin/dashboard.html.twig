@@ -8,7 +8,7 @@
         <div class="alert alert-danger" role='alert'>
             {{ message }}
         </div>
-    {% endfor %}v
+    {% endfor %}
     {% for message in app.flashes('warning_tirage') %}
         <div class="alert alert-warning" role='alert'>
             {{ message }}
@@ -68,169 +68,169 @@
 
 
 
-        <div class="dashboard d-flex justify-content-evenly flex-wrap">
-            <div class="card card-dashboard text-center mt-3 hover-shadow-blue">
-                <h2 class="fs-2 mt-3 mb-3">Statistiques</h2>
-                <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
-                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-info-title p-2">Nombre total de ticket :</p>
-                        <p class="p-info-value p-2">{{ stats.totalTickets }}</p>
-                    </div>
-                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-info-title p-2">Tickets utilisés :</p>
-                        <p class="p-info-value p-2">{{ stats.usedTickets }}</p>
-                    </div>
-                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-info-title p-2">Nombre total de prix récupérés :</p>
-                        <p class="p-info-value p-2">{{ stats.totalPrizes }}</p>
-                    </div>
-                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-info-title p-2">Nombre prix livré :</p>
-                        <p class="p-info-value p-2">{{ stats.delivry }}</p>
-                    </div>
-                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                        <p class="p-info-title p-2">Nombre prix non livré :</p>
-                        <p class="p-info-value p-2">{{ stats.notDelivered }}</p>
-                    </div>
-                    <!-- Élement canvas pour le graphique -->
-                    <canvas id="myPieChart" class="d-flex align-items-center w-100 pt-2"></canvas>
+    <div class="dashboard d-flex justify-content-evenly flex-wrap">
+        <div class="card card-dashboard text-center mt-3 hover-shadow-blue">
+            <h2 class="fs-2 mt-3 mb-3">Statistiques</h2>
+            <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Nombre total de ticket :</p>
+                    <p class="p-info-value p-2">{{ stats.totalTickets }}</p>
                 </div>
-            </div>
-            <div class="card card-dashboard hover-shadow-blue text-center mt-3">
-                <h2 class="fs-2 mt-3 mb-3">Genre statistiques</h2>
-                <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
-                    {% for gender, count in stats.genderStats %}
-                        <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
-                            <p class="p-info-title p-2">
-                                {% if gender == 'male' %}
-                                    Homme
-                                {% elseif gender == 'female' %}
-                                    Femme
-                                {% elseif gender == 'other' %}
-                                    Autre
-                                {% elseif gender == 'prefer_not_to_say' %}
-                                    Préfère ne pas répondre
-                                {% else %}
-                                    Genre inconnu
-                                {% endif %} :</p>
-                            <p class="p-info-value p-2">{{ count }}</p>
-                        </div>
-                    {% endfor %}
-                    <canvas id="genderBarChart" class="d-flex align-items-center w-100 pt-2"></canvas>
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Tickets utilisés :</p>
+                    <p class="p-info-value p-2">{{ stats.usedTickets }}</p>
                 </div>
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Nombre total de prix récupérés :</p>
+                    <p class="p-info-value p-2">{{ stats.totalPrizes }}</p>
+                </div>
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Nombre prix livré :</p>
+                    <p class="p-info-value p-2">{{ stats.delivry }}</p>
+                </div>
+                <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                    <p class="p-info-title p-2">Nombre prix non livré :</p>
+                    <p class="p-info-value p-2">{{ stats.notDelivered }}</p>
+                </div>
+                <!-- Élement canvas pour le graphique -->
+                <canvas id="myPieChart" class="d-flex align-items-center w-100 pt-2"></canvas>
             </div>
-
-            <div class="card card-dashboard-mail hover-shadow-blue text-center mt-3 p-3">
-                <a href="{{ path('admin_email_data') }}"><p>Voir les données d'emailing</p></a>
+        </div>
+        <div class="card card-dashboard hover-shadow-blue text-center mt-3">
+            <h2 class="fs-2 mt-3 mb-3">Genre statistiques</h2>
+            <div class="d-flex align-items-center justify-content-evenly flex-column gap-3 w-100 p-3">
+                {% for gender, count in stats.genderStats %}
+                    <div class="info-row d-flex align-items-center justify-content-between p-2 zoom-1-03">
+                        <p class="p-info-title p-2">
+                            {% if gender == 'male' %}
+                                Homme
+                            {% elseif gender == 'female' %}
+                                Femme
+                            {% elseif gender == 'other' %}
+                                Autre
+                            {% elseif gender == 'prefer_not_to_say' %}
+                                Préfère ne pas répondre
+                            {% else %}
+                                Genre inconnu
+                            {% endif %} :</p>
+                        <p class="p-info-value p-2">{{ count }}</p>
+                    </div>
+                {% endfor %}
+                <canvas id="genderBarChart" class="d-flex align-items-center w-100 pt-2"></canvas>
             </div>
-            <script>
-                // Récupération des données de Twig
-                const totalTickets = {{ stats.totalTickets|json_encode|raw }};
-                const usedTickets = {{ stats.usedTickets|json_encode|raw }};
-                const remainingTickets = totalTickets - usedTickets;
+        </div>
 
-                // Configuration du graphique
-                const ctx = document.getElementById('myPieChart').getContext('2d');
-                const myPieChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: ['Tickets restants', 'Tickets utilisés'],
-                        datasets: [{
-                        label: 'Tickets',
-                            data: [remainingTickets, usedTickets],
-                            backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(139, 195, 74, 0.8)'], // Bleu pour les tickets restants, rouge pour les utilisés
-                            borderColor: ['#333', '#333'],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false, // Permet de contrôler la taille via CSS
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: {
-                                    // Taille des labels dans la légende
-                                    font: {
-                                        size: 30 // Ajustez la taille de la police selon vos besoins
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(tooltipItem) {
-                                        return tooltipItem.label + ': ' + tooltipItem.raw;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            </script>
+        <div class="card card-dashboard-mail hover-shadow-blue text-center mt-3 p-3">
+            <a href="{{ path('admin_email_data') }}"><p>Voir les données d'emailing</p></a>
+        </div>
+        <script>
+            // Récupération des données de Twig
+            const totalTickets = {{ stats.totalTickets|json_encode|raw }};
+            const usedTickets = {{ stats.usedTickets|json_encode|raw }};
+            const remainingTickets = totalTickets - usedTickets;
 
-            <script>
-                const chartCanvas = document.getElementById('genderBarChart');
-                const chartContext = chartCanvas.getContext('2d');
-                const genderStats = {{ stats.genderStats|json_encode|raw }};
-                const genderLabels = Object.keys(genderStats);
-                const genderData = Object.values(genderStats);
-
-                new Chart(chartContext, {
-                    type: 'bar',
-                    data: {
-                        labels: genderLabels,
-                        datasets: [{
-                            label: 'Nombre par Genre',
-                            data: genderData,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                ticks: {
-                                    // Taille des labels sur l'axe X
-                                    font: {
-                                        size: 14 // Ajustez la taille de la police selon vos besoins
-                                    }
-                                }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    // Taille des labels sur l'axe Y
-                                    font: {
-                                        size: 14 // Ajustez la taille de la police selon vos besoins
-                                    }
+            // Configuration du graphique
+            const ctx = document.getElementById('myPieChart').getContext('2d');
+            const myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Tickets restants', 'Tickets utilisés'],
+                    datasets: [{
+                    label: 'Tickets',
+                        data: [remainingTickets, usedTickets],
+                        backgroundColor: ['rgba(75, 192, 192, 0.8)', 'rgba(139, 195, 74, 0.8)'], // Bleu pour les tickets restants, rouge pour les utilisés
+                        borderColor: ['#333', '#333'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Permet de contrôler la taille via CSS
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                // Taille des labels dans la légende
+                                font: {
+                                    size: 30 // Ajustez la taille de la police selon vos besoins
                                 }
                             }
                         },
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'top',
-                                labels: {
-                                    // Taille des labels dans la légende
-                                    font: {
-                                        size: 24 // Ajustez la taille de la police selon vos besoins
-                                    }
-                                }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(tooltipItem) {
-                                        return tooltipItem.label + ': ' + tooltipItem.raw;
-                                    }
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
                                 }
                             }
                         }
                     }
-                });
-            </script>
-        </div>
+                }
+            });
+        </script>
+
+        <script>
+            const chartCanvas = document.getElementById('genderBarChart');
+            const chartContext = chartCanvas.getContext('2d');
+            const genderStats = {{ stats.genderStats|json_encode|raw }};
+            const genderLabels = Object.keys(genderStats);
+            const genderData = Object.values(genderStats);
+
+            new Chart(chartContext, {
+                type: 'bar',
+                data: {
+                    labels: genderLabels,
+                    datasets: [{
+                        label: 'Nombre par Genre',
+                        data: genderData,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: {
+                                // Taille des labels sur l'axe X
+                                font: {
+                                    size: 14 // Ajustez la taille de la police selon vos besoins
+                                }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                // Taille des labels sur l'axe Y
+                                font: {
+                                    size: 14 // Ajustez la taille de la police selon vos besoins
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                // Taille des labels dans la légende
+                                font: {
+                                    size: 24 // Ajustez la taille de la police selon vos besoins
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
 {% endblock %}

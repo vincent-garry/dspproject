@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aperçu du mail{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Aperçu du mail</h1>
+        <div class="card mt-4">
+            <div class="card-header">
+                <strong>Expéditeur : </strong> {{ email.from }}<br>
+                <strong>Destinataire : </strong> {{ email.to }}<br>
+                <strong>Sujet : </strong> {{ email.subject }}
+            </div>
+            <div class="card-body">
+                {% if email.htmlTemplate %}
+                    {{ include(email.htmlTemplate, email.context|default({})) }}
+                {% else %}
+                    {{ email.body|raw }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -4,9 +4,12 @@ namespace App\Controller;
 
 use App\Controller\Mail\BaseController;
 use App\Controller\Mail\MailerController;
+use App\Entity\Email;
 use App\Entity\User;
+use App\Form\EmailFilterType;
 use App\Form\ValidatePriceType;
 use App\Repository\CodeRepository;
+use App\Repository\EmailRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -194,5 +197,32 @@ class AdminController extends BaseController
 
         // Rediriger vers le dashboard admin
         return $this->redirectToRoute('admin_dashboard');
+    }
+
+    #[Route('/email-data', name: 'admin_email_data')]
+    public function index(Request $request, EmailRepository $emailRepository): Response
+    {
+        $form = $this->createForm(EmailFilterType::class);
+        $form->handleRequest($request);
+
+        $recipient = null;
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipient = $form->get('recipient')->getData();
+        }
+
+        $emails = $emailRepository->findByRecipient($recipient);
+
+        return $this->render('admin/email_data.html.twig', [
+            'emails' => $emails,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/email/preview/{id}', name: 'app_email_preview')]
+    public function preview(Email $email): Response
+    {
+        return $this->render('admin/preview.html.twig', [
+            'email' => $email,
+        ]);
     }
 }
