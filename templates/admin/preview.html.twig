@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 {% if email.htmlTemplate %}
-                    {{ include(email.htmlTemplate, email.context|default({})) }}
+                    {% include email.htmlTemplate with email.context|default({}) %}
                 {% else %}
                     {{ email.body|raw }}
                 {% endif %}
