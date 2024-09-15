@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $address = null;
 
     #[ORM\Column]
-    private ?bool $bigwinner = null;
+    private bool $bigwinner = false;
 
     #[ORM\Column]
     private bool $isVerified = false;
