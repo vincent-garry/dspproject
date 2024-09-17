@@ -11,14 +11,15 @@
     margin: 10px;
   }
 }
+.info-row-winner {
+  width: 75% !important;
+}
 .container-validate-price {
   background-color: rgba($blue-color, 0.3);
   .form-validate-price {
-    // h2 {
     color: $dark-color;
     background-color: rgba($white, 0.5);
 
-    // }
     .box-required-validate-price {
       justify-content: space-around;
       div {
@@ -115,7 +116,27 @@
   #btn-tirage {
     width: 100% !important;
   }
+  .card-dashboard {
+    h2 {
+      font-size: 1rem !important;
+    }
+  }
+  .info-row-winner {
+    width: 100% !important;
+    h3 {
+      font-size: 1rem;
+    }
+  }
 }
+
+@media (max-width: 520px) {
+  .info-row-winner {
+    h3 {
+      font-size: 0.75rem;
+    }
+  }
+}
+
 @media (max-width: 450px) {
   .card-dashboard,
   .card-dashboard-mail {

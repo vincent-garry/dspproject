@@ -240,3 +240,20 @@ form {
     text-align: left; /* Aligne le texte à gauche */
   }
 }
+
+@media (max-width: 800px) {
+  .security-title {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 520px) {
+  .security-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .security-title {
+    font-size: 1.5rem;
+  }
+}

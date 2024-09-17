@@ -52,6 +52,7 @@ footer {
   .hover-25:hover {
     opacity: 0.75;
     transition: opacity 0.3s ease;
+    color: white;
   }
 }
 
@@ -80,8 +81,12 @@ footer {
       width: 100%;
       text-align: center;
       padding: 0 15px;
+      min-width: 300px;
     }
-
+    .footer-links {
+      padding: 0;
+      list-style-type: none;
+    }
     .footer-section-div-link {
       flex-direction: column;
       align-items: center;
@@ -123,11 +128,6 @@ footer {
       .footer-legal-link {
         font-size: 12px;
       }
-    }
-
-    .footer-links {
-      padding: 0;
-      list-style-type: none;
     }
 
     .copyright {

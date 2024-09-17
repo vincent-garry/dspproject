@@ -12,10 +12,10 @@
         <h1 class="mb-4">Liste des emails</h1>
 
         <div class="card mb-4">
-            {{ form_start(form, {'attr': {'class': 'form-inline'}}) }}
-            <div class="f-box gap-2">
-                {{ form_widget(form.recipient, {'attr': {'class': 'form-control w-75', 'placeholder': 'Filtrer par destinataire'}}) }}
-                <button type="submit" class="btn btn-darkblue w-25 text-white">
+            {{ form_start(form, {'attr': {'class': 'form-inline m-0'}}) }}
+            <div class="form-email f-box gap-2">
+                {{ form_widget(form.recipient, {'attr': {'class': 'form-control', 'placeholder': 'Filtrer par destinataire'}}) }}
+                <button type="submit" class="btn btn-darkblue text-white">
                     <i class="fas fa-search"></i> Filtrer
                 </button>
             </div>

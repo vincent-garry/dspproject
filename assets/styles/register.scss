@@ -14,3 +14,13 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 600px) {
+  .signup-form {
+    div {
+      label {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

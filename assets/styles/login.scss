@@ -17,3 +17,13 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .login-form {
+    div {
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

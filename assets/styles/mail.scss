@@ -1,0 +1,17 @@
+.form-email {
+  input {
+    width: 75% !important;
+  }
+  button {
+    width: 25% !important;
+  }
+}
+@media (max-width: 800px) {
+  .form-email {
+    flex-direction: column;
+    input,
+    button {
+      width: 100% !important;
+    }
+  }
+}
